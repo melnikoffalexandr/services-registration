@@ -1,0 +1,25 @@
+{
+  "extends": [
+    "react-app"
+  ],
+  "parserOptions": {
+    "project": "./tsconfig.json",
+    "ecmaVersion": "latest",
+    "sourceType": "module"
+  },
+  "ignorePatterns": ["*.d.ts"],
+  "rules": {
+    "no-console": "warn",
+    "prefer-const": "error",
+    "quotes": ["error", "single"],
+    "jsx-quotes": ["error", "prefer-double"],
+    "indent": ["error", 4],
+    "comma-dangle": ["error", "never"],
+    "semi": ["warn", "always"],
+    "import/order": ["error", {
+      "groups": ["builtin", "external", "internal", "unknown", "parent", "sibling", "index", "object", "type"],
+      "newlines-between": "always-and-inside-groups"
+    }],
+    "object-curly-spacing": ["error", "always"]
+  }
+}
