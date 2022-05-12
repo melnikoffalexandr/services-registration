@@ -14,10 +14,10 @@ const Layout: FC<Props> = ({ children }) => {
             <div className={styles.header}>
                 <div className={styles.actionButton}>Закрыть</div>
                 <div className={styles.middleHeader}>
-                    <span>Сервисы ROSSKO</span>
+                    <span>Сервисы ROSSKO </span>
                     <span>бот</span>
                 </div>
-                <img src={refreshImg} width={22} height={22} />
+                <img src={refreshImg} width={22} height={22}/>
             </div>
             {children}
         </div>

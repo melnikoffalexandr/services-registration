@@ -1,11 +1,12 @@
 import React from 'react';
 
-import './app.module.scss';
 import Layout from '../layout';
+
+// import styles from './app.module.scss';
 
 export const App = () => (
     <Layout>
-        App
+            App
     </Layout>
 );
 
