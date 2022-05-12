@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { Provider } from 'react-redux';
 
-import Home from './components/home';
+import Home from './pages/home';
 
 import store from './store';
 import './styles/globals.scss';

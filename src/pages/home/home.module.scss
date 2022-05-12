@@ -1,0 +1,13 @@
+.root {
+  width: 344px;
+  margin: 24px auto;
+
+  .actionContainer {
+    display: flex;
+    justify-content: space-between;
+
+    .button {
+      flex-basis: 47.5%;
+    }
+  }
+}

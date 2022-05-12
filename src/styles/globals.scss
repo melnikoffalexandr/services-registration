@@ -1,26 +1,23 @@
 @font-face {
   font-family: PTSans;
+  font-weight: normal;
   src:
     local("PTSans"),
     url("../assets/fonts/PTSans-Regular.ttf") format("truetype");
-
-  font-weight: normal;
 }
 
 @font-face {
   font-family: PTSans;
+  font-weight: bold;
   src:
     local("PTSans"),
     url("../assets/fonts/PTSans-Bold.ttf") format("truetype");
-
-  font-weight: bold;
 }
 
 html,
 body {
   margin: 0;
   padding: 0;
-
   font-family:
     PTSans,
     sans-serif;
@@ -31,11 +28,9 @@ body {
 }
 
 a {
-  text-decoration: none;
-
-  color: inherit;
-
   background-color: transparent;
+  color: inherit;
+  text-decoration: none;
 }
 
 html {
@@ -53,15 +48,13 @@ main {
 
 h1 {
   margin: 0.67em 0;
-
   font-size: 2em;
 }
 
 hr {
-  overflow: visible;
-
   box-sizing: content-box;
   height: 0;
+  overflow: visible;
 }
 
 pre {
@@ -70,9 +63,8 @@ pre {
 }
 
 abbr[title] {
-  text-decoration: underline;
-
   border-bottom: none;
+  text-decoration: underline;
 }
 
 b,
@@ -94,11 +86,9 @@ small {
 sub,
 sup {
   position: relative;
-
-  vertical-align: baseline;
-
   font-size: 75%;
   line-height: 0;
+  vertical-align: baseline;
 }
 
 sub {
@@ -119,7 +109,6 @@ optgroup,
 select,
 textarea {
   margin: 0;
-
   font-family: inherit;
   font-size: 100%;
   line-height: 1.15;
@@ -147,7 +136,6 @@ button::-moz-focus-inner,
 [type="reset"]::-moz-focus-inner,
 [type="submit"]::-moz-focus-inner {
   padding: 0;
-
   border-style: none;
 }
 
@@ -164,14 +152,11 @@ fieldset {
 
 legend {
   display: table;
-
   box-sizing: border-box;
   max-width: 100%;
   padding: 0;
-
-  white-space: normal;
-
   color: inherit;
+  white-space: normal;
 }
 
 progress {
@@ -195,7 +180,6 @@ textarea {
 
 [type="search"] {
   -webkit-appearance: textfield;
-
   outline-offset: -2px;
 }
 
@@ -205,7 +189,6 @@ textarea {
 
 ::-webkit-file-upload-button {
   -webkit-appearance: button;
-
   font: inherit;
 }
 
