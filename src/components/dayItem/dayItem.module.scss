@@ -1,0 +1,38 @@
+@import "src/styles/variables";
+
+.root {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 16px;
+  border: 1px solid $black-color;
+
+  &:not(:last-child) {
+    margin-bottom: 18px;
+  }
+
+  .dayWrapper {
+    display: flex;
+    align-items: center;
+
+    .date {
+      margin-right: 16px;
+      font-size: 16px;
+      line-height: 22px;
+    }
+
+    .todayMark {
+      padding: 4px 6px;
+      background-color: $red-color;
+      color: $white-color;
+      font-size: 12px;
+      line-height: 16px;
+    }
+  }
+
+  .count {
+    color: $gray-color;
+    font-size: 12px;
+    line-height: 16px;
+  }
+}
