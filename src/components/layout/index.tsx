@@ -1,6 +1,6 @@
 import { ReactNode, FC } from 'react';
 
-import refreshImg from '../assets/img/refresh.png';
+import refreshImg from '../../assets/img/refresh.png';
 
 import styles from './layout.module.scss';
 
@@ -17,7 +17,7 @@ const Layout: FC<Props> = ({ children }) => {
                     <span>Сервисы ROSSKO </span>
                     <span>бот</span>
                 </div>
-                <img src={refreshImg} width={22} height={22}/>
+                <img src={refreshImg} />
             </div>
             {children}
         </div>

@@ -1,0 +1,49 @@
+@import "../../styles/variables";
+
+.root {
+  display: flex;
+  flex-direction: column;
+
+  width: 375px;
+  min-height: 100vh;
+
+  margin: 0 auto;
+  padding: 16px;
+
+  color: $black-color;
+
+  .header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    margin-bottom: 21px;
+
+    .actionButton {
+      color: $blue-color;
+
+      font-size: 16px;
+
+      line-height: 21px;
+    }
+
+    .middleHeader {
+      display: flex;
+      align-items: center;
+      flex-direction: column;
+
+      :first-child {
+        font-size: 16px;
+        font-weight: bold;
+        line-height: 21px;
+      }
+
+      :last-child {
+        color: $gray-color;
+
+        font-size: 12px;
+        line-height: 12px;
+      }
+    }
+  }
+}
