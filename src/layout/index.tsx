@@ -12,12 +12,12 @@ const Layout: FC<Props> = ({ children }) => {
     return (
         <div className={styles.root}>
             <div className={styles.header}>
-                <div className={styles.actionButton} onClick={() => console.log('Закрыть')}>Закрыть</div>
+                <div className={styles.actionButton}>Закрыть</div>
                 <div className={styles.middleHeader}>
                     <span>Сервисы ROSSKO</span>
                     <span>бот</span>
                 </div>
-                <img src={refreshImg} width={22} height={22} onClick={() => console.log('Обновить')} alt=""/>
+                <img src={refreshImg} width={22} height={22} />
             </div>
             {children}
         </div>
