@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import cls from 'classnames';
 
+import { ReactComponent as Loader } from '../../assets/img/loader.svg';
+
 import Navbar from '../../components/navbar';
 import Button from '../../components/button';
 import DayItem from '../../components/dayItem';
@@ -13,7 +15,7 @@ import styles from './homePage.module.scss';
 export const HomePage = () => {
     const [searchText, setSearchText] = useState('');
     const [searchFocus, setSearchFocus] = useState(false);
-    const [showArchiveButton, setShowArchiveButton] =useState(true);
+    const [showArchiveButton, setShowArchiveButton] = useState(true);
 
     return (
         <div className={styles.root}>
@@ -42,9 +44,10 @@ export const HomePage = () => {
                         text="Архив записей"
                     />)}
             </div>
-            <div className="daysList">
-                {daysList.map((day) => <DayItem key={day.id} day={day}/>)}
-            </div>
+            {searchText.length > 2 ? <Loader /> : (
+                <div className="daysList">
+                    {daysList.map((day) => <DayItem key={day.id} day={day}/>)}
+                </div>)}
         </div>
     );
 };
