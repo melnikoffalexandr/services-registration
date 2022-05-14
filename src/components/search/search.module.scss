@@ -13,7 +13,6 @@
     position: relative;
     align-items: center;
     width: 100%;
-    padding: 12px;
     overflow: hidden;
     transition: width 1s;
     border: 1px solid transparent;
@@ -31,6 +30,7 @@
       caret-color: $white-blue;
       background-color: transparent;
       text-indent: 7px;
+      cursor: default;
 
       &:focus {
         text-indent: 0;
@@ -46,6 +46,7 @@
     .inputWrapper {
       display: flex;
       align-items: center;
+      padding: 12px;
     }
 
     .searchImageWrapper {
@@ -60,7 +61,7 @@
       bottom: 0;
       align-items: center;
       justify-content: center;
-      width: 36%;
+      width: 34%;
       transform: translateX(0);
       transition: 1s;
       border: 1px solid rgb(153 169 186 / 80%);
