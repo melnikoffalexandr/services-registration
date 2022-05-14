@@ -1,10 +1,10 @@
 import { configureStore } from '@reduxjs/toolkit';
 
-import layoutReducer from './layoutSlice';
+import homeReducer from './homeSlice';
 
 const store = configureStore({
     reducer: {
-        layout: layoutReducer
+        home: homeReducer
     }
 });
 

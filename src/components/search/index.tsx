@@ -1,5 +1,8 @@
-import React, { useRef, useState } from 'react';
+import React, { FC, useRef, useState } from 'react';
 import cls from 'classnames';
+
+import { useAppDispatch, useAppSelector } from '../../utils/hooks';
+import { setSearchText } from '../../store/homeSlice';
 
 import { ReactComponent as SearchImg } from '../../assets/img/search.svg';
 import { ReactComponent as ArrowImg } from '../../assets/img/arrow.svg';
@@ -7,10 +10,12 @@ import { ReactComponent as CrossImg } from '../../assets/img/cross.svg';
 
 import styles from './search.module.scss';
 
-export const Search = () => {
+export const Search:FC = () => {
+    const dispatch = useAppDispatch();
     const inputRef = useRef<HTMLInputElement>(null);
-    const [searchText, setSearchText] = useState('');
     const [searchFocus, setSearchFocus] = useState(false);
+
+    const searchText = useAppSelector((state) => state.home.searchText);
 
     return (
         <div className={styles.root}>
@@ -28,7 +33,7 @@ export const Search = () => {
                         ref={inputRef}
                         value={searchText}
                         placeholder={searchFocus ? '' : 'Поиск записей'}
-                        onChange={(e) => setSearchText(e.target.value)}
+                        onChange={(e) => dispatch(setSearchText(e.target.value))}
                         onFocus={() => {
                             setSearchFocus(true);
                         }}
@@ -46,7 +51,7 @@ export const Search = () => {
                         <div
                             className={styles.crossImageWrapper}
                             onClick={() => {
-                                setSearchText('');
+                                dispatch(setSearchText(''));
                                 setSearchFocus(false);
                             }}>
                             <CrossImg/>
