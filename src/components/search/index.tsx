@@ -35,7 +35,7 @@ export const Search = () => {
                     <span
                         className={styles.placeholder}
                         style={{
-                            left: !searchText.length ? 20 : 20 + 7 * searchText.length
+                            left: !searchText.length ? 24 : 24 + 7 * searchText.length
                         }}>
                       — введите не менее 3 символов
                     </span>)
