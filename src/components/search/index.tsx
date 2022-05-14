@@ -16,41 +16,46 @@ export const Search = () => {
         <div className={cls(styles.root, { [styles.wideRoot]: searchFocus })}>
             <div
                 className={cls(styles.search, { [styles.wideSearch]: searchFocus })}
-                onClick={() => !searchFocus && inputRef?.current?.focus()}>
-                {!searchFocus && (
-                    <div className={styles.searchImageWrapper}>
-                        <SearchImg />
-                    </div>
-                )}
-                <input
-                    ref={inputRef}
-                    value={searchText}
-                    placeholder={searchFocus ? '' : 'Поиск записей'}
-                    onChange={(e) => setSearchText(e.target.value)}
-                    onFocus={() => {
-                        setSearchFocus(true);
-                    }}
-                />
-                {searchText.length < 3 && searchFocus && (
-                    <span
-                        className={styles.placeholder}
-                        style={{
-                            left: !searchText.length ? 24 : 24 + 7 * searchText.length
-                        }}>
+            >
+                <div
+                    className={styles.inputWrapper}
+                    onClick={() => !searchFocus && inputRef?.current?.focus()}
+                >
+                    {!searchFocus && (
+                        <div className={styles.searchImageWrapper}>
+                            <SearchImg />
+                        </div>
+                    )}
+                    <input
+                        ref={inputRef}
+                        value={searchText}
+                        placeholder={searchFocus ? '' : 'Поиск записей'}
+                        onChange={(e) => setSearchText(e.target.value)}
+                        onFocus={() => {
+                            setSearchFocus(true);
+                        }}
+                    />
+                    {searchText.length < 3 && searchFocus && (
+                        <span
+                            className={styles.placeholder}
+                            style={{
+                                left: !searchText.length ? 24 : 24 + 7 * searchText.length
+                            }}>
                       — введите не менее 3 символов
-                    </span>)
-                }
-                {searchFocus && (
-                    <div
-                        className={styles.crossImageWrapper}
-                        onClick={() => {
-                            setSearchText('');
-                            setSearchFocus(false);
-                        }}>
-                        <CrossImg/>
-                    </div>
-                )}
-                <div className={cls(styles.archiveButton, { [styles.archiveHiddenButton]: searchFocus })}>
+                        </span>)
+                    }
+                    {searchFocus && (
+                        <div
+                            className={styles.crossImageWrapper}
+                            onClick={() => {
+                                setSearchText('');
+                                setSearchFocus(false);
+                            }}>
+                            <CrossImg/>
+                        </div>
+                    )}
+                </div>
+                <div className={cls(styles.archiveButton, { [styles.archiveHiddenButton]: searchFocus })} onClick={() => console.log('Archive')}>
                     <span>Архив</span>
                     <ArrowImg />
                 </div>

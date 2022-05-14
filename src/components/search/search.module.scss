@@ -16,6 +16,7 @@
     padding: 12px;
     overflow: hidden;
     transition: width 1s;
+    border: 1px solid transparent;
     border-radius: 8px;
 
     img {
@@ -40,6 +41,11 @@
         font-size: 16px;
         line-height: 22px;
       }
+    }
+
+    .inputWrapper {
+      display: flex;
+      align-items: center;
     }
 
     .searchImageWrapper {
