@@ -13,10 +13,8 @@ export const Search = () => {
     const [searchFocus, setSearchFocus] = useState(false);
 
     return (
-        <div className={cls(styles.root, { [styles.wideRoot]: searchFocus })}>
-            <div
-                className={cls(styles.search, { [styles.wideSearch]: searchFocus })}
-            >
+        <div className={styles.root}>
+            <div className={cls(styles.search, { [styles.wideSearch]: searchFocus })}>
                 <div
                     className={styles.inputWrapper}
                     onClick={() => !searchFocus && inputRef?.current?.focus()}
