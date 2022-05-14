@@ -1,17 +1,20 @@
 import React, { FC } from 'react';
 import cls from 'classnames';
 
+import { ReactComponent as Plus } from '../../assets/img/plus.svg';
+
 import styles from './button.module.scss';
 
 interface Props {
-  text?: string;
-  variant?: 'filled' | 'not-filled';
+  text: string;
   className?: string;
+  withIcon?: boolean;
 }
 
-export const Button:FC<Props>= ({ variant = 'filled', text='Text', className }) => (
-    <div className={cls(styles.root, className, { [styles.rootNotFilled]: variant === 'not-filled' })}>
-        {text}
+export const Button:FC<Props>= ({ text, className, withIcon }) => (
+    <div className={cls(styles.root, className)}>
+        {withIcon && <span className={styles.icon}><Plus/></span>}
+        <span className={styles.text}>{text}</span>
     </div>
 );
 

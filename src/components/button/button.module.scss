@@ -4,17 +4,22 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 12px 16px;
-  background-color: $black-color;
-  color: $white-color;
-  font-size: 16px;
-  font-weight: bold;
-  line-height: 22px;
-}
+  padding: 10px 16px 12px 12px;
+  border-radius: 8px;
+  background-color: $green-color;
 
-.rootNotFilled {
-  border: 1px solid rgb(153 169 186 / 80%);
-  background-color: transparent;
-  color: $blue-color;
-  font-weight: normal;
+  span {
+    display: inherit;
+  }
+
+  .icon {
+    margin-right: 12px;
+  }
+
+  .text {
+    color: $white;
+    font-size: 16px;
+    font-weight: bold;
+    line-height: 22px;
+  }
 }

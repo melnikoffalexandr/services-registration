@@ -1,15 +1,8 @@
+@import "src/styles/variables";
+
 .root {
-  display: flex;
-  align-items: center;
-
-  img {
-    height: 24px;
-    margin-right: 6px;
-  }
-
-  span {
-    font-size: 22px;
-    font-weight: bold;
-    line-height: 26px;
-  }
+  color: $black;
+  font-size: 24px;
+  font-weight: bold;
+  line-height: 29px;
 }

@@ -9,7 +9,7 @@ import styles from './navbar.module.scss';
 export const Navbar = () => (
     <div className={styles.root}>
         <Title text="Записи" />
-        <Button text="+ Записать" />
+        <Button className={styles.button} text="Записать" withIcon />
     </div>
 );
 

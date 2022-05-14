@@ -5,7 +5,7 @@
   align-items: center;
   justify-content: space-between;
   padding: 12px 16px;
-  border: 1px solid $black-color;
+  border: 1px solid $black;
 
   &:not(:last-child) {
     margin-bottom: 18px;
@@ -23,15 +23,15 @@
 
     .todayMark {
       padding: 4px 6px;
-      background-color: $red-color;
-      color: $white-color;
+      background-color: $light-red;
+      color: $red;
       font-size: 12px;
       line-height: 16px;
     }
   }
 
   .count {
-    color: $gray-color;
+    color: $text-gray;
     font-size: 12px;
     line-height: 16px;
   }
