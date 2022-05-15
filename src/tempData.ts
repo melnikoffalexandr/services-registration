@@ -1,4 +1,6 @@
-export const daysList = [
+import { Entry } from './types/entries';
+
+export const daysListLocal: Entry[] = [
     {
         id: '1',
         date: 'Thu May 14 2022 15:11:32 GMT+0500',

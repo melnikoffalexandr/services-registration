@@ -1,7 +1,6 @@
 {
   "extends": [
-    "react-app",
-    "google"
+    "react-app"
   ],
   "parserOptions": {
     "project": "./tsconfig.json",

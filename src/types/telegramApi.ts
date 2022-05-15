@@ -38,7 +38,7 @@ export interface TelegramApi {
         isActive: boolean;
         isProgressVisible: boolean;
         setText: (text: string) => void;
-        onClick: (callback) => void;
+        // onClick: (callback) => void;
         show: () => void;
         hide: () => void;
         enable: () => void;
@@ -49,9 +49,9 @@ export interface TelegramApi {
             text?: string, color?: string, text_color?: string, is_active?: boolean, is_visible?: boolean
         }) => void;
     };
-    onEvent: (eventType, eventHandler) => void;
-    offEvent: (eventType, eventHandler) => void;
-    sendData: (data) => void;
+    // onEvent: (eventType, eventHandler) => void;
+    // offEvent: (eventType, eventHandler) => void;
+    // sendData: (data) => void;
     ready: () => void;
     expand: () => void;
     close: () => void;

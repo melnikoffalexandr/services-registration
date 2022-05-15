@@ -2,14 +2,14 @@ import React, { FC } from 'react';
 
 import dayjs from '../../utils/dayjs';
 
-import { daysList } from '../../tempData';
-
 import { pluralize } from '../../utils/pluralize';
+
+import { Entry } from '../../types/entries';
 
 import styles from './dayItem.module.scss';
 
 interface Props {
-  day: typeof daysList[0];
+  day: Entry;
 }
 
 export const DayItem: FC<Props> = ({ day }) => {
