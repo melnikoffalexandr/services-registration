@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { ClassNames, DayPicker } from 'react-day-picker';
 import ru from 'date-fns/locale/ru';
 import { format } from 'date-fns';
@@ -42,7 +42,14 @@ export const CreateNewEntry = () => {
         setCalendarIsOpen(!calendarIsOpen);
     };
 
-    const timeArr = ['8:00', '8:30', '9:00','9:30','10:00','10:30','11:30','12:00','12:30','13:00','13:30','14:00','14:30'];
+    const timeArr = ['8:00', '8:30', '9:00','9:30','10:00','10:30','11:30','12:00','12:30','13:00','13:30','14:00','14:30','15:00','15:30','16:00','16:30','17:00','17:30','18:00','18:30', '19:00','19:30','20:00'];
+
+    useEffect(() => {
+        const el = document.getElementById('selected');
+        if (el) {
+            el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+    }, [timeIsOpen]);
 
     return (
         <div className={styles.root}>
@@ -105,20 +112,20 @@ export const CreateNewEntry = () => {
                             <div ref={timeRef} className={styles.timeRoot}>
                                 <div className={styles.timeTitle}>Выберете время</div>
                                 <div className={styles.timeWrapper}>
-                                    {timeArr.map(item => <div
-                                        key={item}
-                                        className={cls(styles.time, { [styles.activeTime]: false })}
-                                        onClick={({ currentTarget }) => {
-                                            if (currentTarget?.textContent) {
-                                                setTimeValue(currentTarget.textContent);
-                                                setTimeIsOpen(!timeIsOpen);
-
-                                                console.log(currentTarget.textContent);
-                                            }
-                                        }}
-                                    >
-                                        {item}
-                                    </div>
+                                    {timeArr.map((item) => (
+                                        <div
+                                            id={item === timeValue ? 'selected' : ''}
+                                            key={item}
+                                            className={cls(styles.time, { [styles.activeTime]: item === timeValue })}
+                                            onClick={({ currentTarget }) => {
+                                                if (currentTarget?.textContent) {
+                                                    setTimeValue(currentTarget.textContent);
+                                                    setTimeIsOpen(!timeIsOpen);
+                                                }
+                                            }}
+                                        >
+                                            {item}
+                                        </div>)
                                     )}
                                 </div>
                             </div>

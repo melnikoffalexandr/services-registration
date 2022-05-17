@@ -149,6 +149,10 @@
             border-bottom: 1px solid rgb(153 169 186 / 40%);
           }
         }
+
+        .activeTime {
+          background-color: $light-red;
+        }
       }
     }
   }
