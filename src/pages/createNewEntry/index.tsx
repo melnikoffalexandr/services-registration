@@ -112,9 +112,9 @@ export const CreateNewEntry = () => {
                             <div ref={timeRef} className={styles.timeRoot}>
                                 <div className={styles.timeTitle}>Выберете время</div>
                                 <div className={styles.timeWrapper}>
-                                    {timeArr.map((item) => (
+                                    {timeArr.map((item, index) => (
                                         <div
-                                            id={item === timeValue ? 'selected' : ''}
+                                            id={item === timeValue ? 'selected' : `${index}`}
                                             key={item}
                                             className={cls(styles.time, { [styles.activeTime]: item === timeValue })}
                                             onClick={({ currentTarget }) => {
