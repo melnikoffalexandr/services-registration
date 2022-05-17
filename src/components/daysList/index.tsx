@@ -27,7 +27,7 @@ export const DaysList = () => {
 
     return (
         <div className={styles.root}>
-            {daysList.map((day) => <DayItem key={day.id} day={day}/>)}
+            {daysList.map((day) => <DayItem key={day.date} day={day}/>)}
         </div>
     );
 };

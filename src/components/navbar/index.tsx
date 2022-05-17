@@ -1,6 +1,6 @@
 import React from 'react';
 
-import Title from '../title';
+import { Link } from 'react-router-dom';
 
 import Button from '../button';
 
@@ -8,8 +8,10 @@ import styles from './navbar.module.scss';
 
 export const Navbar = () => (
     <div className={styles.root}>
-        <Title text="Записи" />
-        <Button className={styles.button} text="Записать" withIcon />
+        <div className={styles.title}>Записи</div>
+        <Link to="create-new-entry">
+            <Button className={styles.button} text="Записать" withIcon />
+        </Link>
     </div>
 );
 
