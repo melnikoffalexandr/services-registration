@@ -11,6 +11,8 @@ import { ReactComponent as CalendarImg } from '../../assets/img/calendar.svg';
 import { ReactComponent as TimeImg } from '../../assets/img/time.svg';
 import { useOnClickOutside } from '../../utils/useOnClickOutside';
 
+import { useDisableBodyScroll } from '../../utils/useDisableBodyScroll';
+
 import styles from './createNewEntry.module.scss';
 
 
@@ -24,12 +26,13 @@ export const CreateNewEntry = () => {
     const [dateValue, setDateValue] = useState<string>('');
     const [timeValue, setTimeValue] = useState<string>('');
 
+
+    useDisableBodyScroll(timePopup.isOpen);
     useOnClickOutside(calendarPopup.isOpen, calendarRef, () => setCalendarPopup({ ...calendarPopup, isOpen: false }));
     useOnClickOutside(timePopup.isOpen, timeRef, () => setTimePopup({ ...timePopup, isOpen: false }));
 
     const classNames: ClassNames = {
         ...stylesPicker,
-        root: styles.pickerRoot,
         caption_label: styles.captionLabel,
         day_selected: styles.daySelected,
         day_outside: styles.dayOutside,
