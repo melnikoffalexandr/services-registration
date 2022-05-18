@@ -8,7 +8,7 @@ import { Link } from 'react-router-dom';
 import { createPortal } from 'react-dom';
 
 import { ReactComponent as CalendarImg } from '../../assets/img/calendar.svg';
-import { ReactComponent as TimeImg } from '../../assets/img/time.svg';
+// import { ReactComponent as TimeImg } from '../../assets/img/time.svg';
 import { useOnClickOutside } from '../../utils/useOnClickOutside';
 
 import { useDisableBodyScroll } from '../../utils/useDisableBodyScroll';
@@ -79,7 +79,7 @@ export const CreateNewEntry = () => {
                             {!dateValue && <span>Дата</span>}
                         </span>
                     </div>
-                    <div
+                    {/*<div
                         className={styles.inputWrapper}
                         onClick={(event) => {
                             const el = event.currentTarget;
@@ -99,7 +99,16 @@ export const CreateNewEntry = () => {
                         <span className={styles.placeholder}>
                             {!timeValue && <span>Время</span>}
                         </span>
-                    </div>
+                    </div>*/}
+                    <select
+                        value={timeValue}
+                        onChange={(e) => setTimeValue(e.target.value)}
+                    >
+                        <option value="default" disabled>
+                          Время
+                        </option>
+                        {timeArr.map(item => <option value={item}>{item}</option>)}
+                    </select>
                 </div>
             </div>
 
