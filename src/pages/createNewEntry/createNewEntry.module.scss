@@ -169,6 +169,8 @@
   .timeWrapper {
     overflow-y: scroll;
 
+    max-height: 300px;
+
     &::-webkit-scrollbar {
       width: 5px;
 
