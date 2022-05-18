@@ -86,7 +86,7 @@ export const CreateNewEntry = () => {
                             const { top, left, width } = el.getBoundingClientRect();
                             setTimePopup({ isOpen: true, width: width, top: window.pageYOffset + top, left });
                             // @ts-ignore
-                            window.Telegram.WebApp.isExpanded = false;
+                            window.Telegram.WebApp.expand();
                         }}
                     >
                         <div className={styles.imageWrapper}>
