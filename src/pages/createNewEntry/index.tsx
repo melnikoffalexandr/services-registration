@@ -13,7 +13,7 @@ import { useOnClickOutside } from '../../utils/useOnClickOutside';
 
 import styles from './createNewEntry.module.scss';
 
-export const CreateNewEntry = () => {
+const CreateNewEntry = () => {
     const calendarRef = useRef<HTMLDivElement>(null);
 
     const [calendarPopup, setCalendarPopup] = useState({ isOpen: false, top: 0, left: 0 });
@@ -30,10 +30,10 @@ export const CreateNewEntry = () => {
         day_selected: styles.daySelected,
         day_outside: styles.dayOutside,
         button: cls(stylesPicker.button, styles.button),
-        nav_button: cls(stylesPicker.nav_button, styles.navButton)
+        nav_button: cls(stylesPicker.nav_button, styles.navButton),
     };
 
-    const timeArr = ['8:00', '8:30', '9:00','9:30','10:00','10:30','11:30','12:00','12:30','13:00','13:30','14:00','14:30','15:00','15:30','16:00','16:30','17:00','17:30','18:00','18:30', '19:00','19:30','20:00'];
+    const timeArr = ['8:00', '8:30', '9:00', '9:30', '10:00', '10:30', '11:30', '12:00', '12:30', '13:00', '13:30', '14:00', '14:30', '15:00', '15:30', '16:00', '16:30', '17:00', '17:30', '18:00', '18:30', '19:00', '19:30', '20:00'];
 
     return (
         <div className={styles.root}>
@@ -50,7 +50,7 @@ export const CreateNewEntry = () => {
                     onClick={(event) => {
                         const el = event.currentTarget;
                         const { top, left } = el.getBoundingClientRect();
-                        setCalendarPopup({ isOpen: true, top: top, left: left });
+                        setCalendarPopup({ isOpen: true, top, left });
                     }}
                 >
                     <div className={styles.imageWrapper}>
@@ -74,7 +74,7 @@ export const CreateNewEntry = () => {
                         className={cls(styles.time, { [styles.selectedTime]: timeValue })}
                     >
                         <option value="" disabled hidden>Время</option>
-                        {timeArr.map(item => <option key={item} value={item}>{item}</option>)}
+                        {timeArr.map((item) => <option key={item} value={item}>{item}</option>)}
                     </select>
                 </div>
             </div>
@@ -83,7 +83,7 @@ export const CreateNewEntry = () => {
                     ref={calendarRef}
                     style={{
                         top: calendarPopup.top + 47,
-                        left: calendarPopup.left
+                        left: calendarPopup.left,
                     }}
                     className={styles.calendarWrapper}
                 >
@@ -103,7 +103,7 @@ export const CreateNewEntry = () => {
                             }
                         }}
                     />
-                </div>, document.body
+                </div>, document.body,
             )}
         </div>
     );

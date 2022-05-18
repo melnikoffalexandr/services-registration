@@ -1,16 +1,14 @@
 import React, { useEffect } from 'react';
 
 import DayItem from '../dayItem';
-
 import { useAppDispatch, useAppSelector } from '../../utils/hooks';
 import { daysListLocal } from '../../tempData';
 import { fetchAllEntries } from '../../store/homeSlice';
-
 import { ReactComponent as LoaderImg } from '../../assets/img/loader.svg';
 
 import styles from './daysList.module.scss';
 
-export const DaysList = () => {
+const DaysList = () => {
     const dispatch = useAppDispatch();
     const { data: daysListServer, loading } = useAppSelector((state) => state.home.entries);
     const daysList = process.env.NODE_ENV === 'development' ? daysListServer : daysListLocal;
@@ -27,7 +25,7 @@ export const DaysList = () => {
 
     return (
         <div className={styles.root}>
-            {daysList.map((day) => <DayItem key={day.date} day={day}/>)}
+            {daysList.map((day) => <DayItem key={day.date} day={day} />)}
         </div>
     );
 };

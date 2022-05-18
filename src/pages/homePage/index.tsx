@@ -6,14 +6,12 @@ import DaysList from '../../components/daysList';
 
 // import styles from './homePage.module.scss';
 
-export const HomePage = () => {
-    return (
-        <>
-            <Navbar />
-            <Search />
-            <DaysList />
-        </>
-    );
-};
+const HomePage = () => (
+    <>
+        <Navbar />
+        <Search />
+        <DaysList />
+    </>
+);
 
 export default HomePage;

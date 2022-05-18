@@ -3,14 +3,13 @@ import cls from 'classnames';
 
 import { useAppDispatch, useAppSelector } from '../../utils/hooks';
 import { setSearchText } from '../../store/homeSlice';
-
 import { ReactComponent as SearchImg } from '../../assets/img/search.svg';
 import { ReactComponent as ArrowImg } from '../../assets/img/arrow.svg';
 import { ReactComponent as CrossImg } from '../../assets/img/cross.svg';
 
 import styles from './search.module.scss';
 
-export const Search:FC = () => {
+const Search:FC = () => {
     const dispatch = useAppDispatch();
     const inputRef = useRef<HTMLInputElement>(null);
     const [searchFocus, setSearchFocus] = useState(false);
@@ -42,19 +41,21 @@ export const Search:FC = () => {
                         <span
                             className={styles.placeholder}
                             style={{
-                                left: !searchText.length ? 24 : 24 + 7 * searchText.length
-                            }}>
-                      — введите не менее 3 символов
-                        </span>)
-                    }
+                                left: !searchText.length ? 24 : 24 + 7 * searchText.length,
+                            }}
+                        >
+                            — введите не менее 3 символов
+                        </span>
+                    )}
                     {searchFocus && (
                         <div
                             className={styles.crossImageWrapper}
                             onClick={() => {
                                 dispatch(setSearchText(''));
                                 setSearchFocus(false);
-                            }}>
-                            <CrossImg/>
+                            }}
+                        >
+                            <CrossImg />
                         </div>
                     )}
                 </div>

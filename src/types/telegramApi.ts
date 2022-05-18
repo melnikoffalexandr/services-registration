@@ -6,7 +6,7 @@ type User = {
     username: string;
     language_code: string;
     photo_url: string;
-}
+};
 
 export interface TelegramApi {
     initData: string;
@@ -56,5 +56,3 @@ export interface TelegramApi {
     expand: () => void;
     close: () => void;
 }
-
-

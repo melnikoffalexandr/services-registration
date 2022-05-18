@@ -1,18 +1,16 @@
 import React, { FC } from 'react';
 
 import dayjs from '../../utils/dayjs';
-
 import { pluralize } from '../../utils/pluralize';
-
 import { Entry } from '../../types/entries';
 
 import styles from './dayItem.module.scss';
 
 interface Props {
-  day: Entry;
+    day: Entry;
 }
 
-export const DayItem: FC<Props> = ({ day }) => {
+const DayItem: FC<Props> = ({ day }) => {
     const isToday = dayjs(day.date).isToday();
     return (
         <div className={styles.root}>

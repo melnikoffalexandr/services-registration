@@ -1,4 +1,5 @@
 import axios, { AxiosInstance, AxiosRequestConfig } from 'axios';
+
 const baseUrl = 'http://localhost:3004';
 
 class ApiClient {
@@ -10,8 +11,8 @@ class ApiClient {
             timeout: 3000,
             withCredentials: true,
             headers: {
-                'Content-Type': 'application/json'
-            }
+                'Content-Type': 'application/json',
+            },
         });
     }
 

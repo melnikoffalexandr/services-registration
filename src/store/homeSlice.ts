@@ -12,25 +12,25 @@ export const fetchAllEntries = createAsyncThunk<Entry[], undefined, { rejectValu
         } catch (err) {
             return rejectWithValue('Server Error Test');
         }
-    }
+    },
 );
 
 type HomeState = {
-  searchText: string;
-  entries: {
-    loading: boolean;
-    data: Entry[];
-    error: string | null;
-  }
-}
+    searchText: string;
+    entries: {
+        loading: boolean;
+        data: Entry[];
+        error: string | null;
+    }
+};
 
 const initialState: HomeState = {
     searchText: '',
     entries: {
         loading: false,
         data: [],
-        error: ''
-    }
+        error: '',
+    },
 };
 
 const homeSlice = createSlice({
@@ -39,7 +39,7 @@ const homeSlice = createSlice({
     reducers: {
         setSearchText(state, action: PayloadAction<string>) {
             state.searchText = action.payload;
-        }
+        },
     },
     extraReducers: (builder) => {
         builder
@@ -57,7 +57,7 @@ const homeSlice = createSlice({
                     state.entries.error = payload;
                 }
             });
-    }
+    },
 });
 
 export const { setSearchText } = homeSlice.actions;

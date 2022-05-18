@@ -11,6 +11,8 @@
   "rules": {
     "property-no-vendor-prefix": null,
     "selector-class-pattern": null,
-    "no-descending-specificity": null
+    "no-descending-specificity": null,
+    "no-empty-source": null,
+    "max-empty-lines": null
   }
 }

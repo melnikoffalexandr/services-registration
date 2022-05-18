@@ -7,7 +7,7 @@ import CreateNewEntry from '../../pages/createNewEntry';
 
 import styles from './app.module.scss';
 
-export const App = () => (
+const App = () => (
     <div className={styles.root}>
         <Routes>
             <Route path="/" element={<LayoutPage />}>

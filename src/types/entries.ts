@@ -1,5 +1,5 @@
 export interface Entry {
-  id: string,
-  date: string,
-  count: number
+    id: string,
+    date: string,
+    count: number
 }

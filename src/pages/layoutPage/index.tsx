@@ -4,7 +4,7 @@ import { Outlet } from 'react-router-dom';
 
 import styles from './layoutPage.module.scss';
 
-export const LayoutPage = () => (
+const LayoutPage = () => (
     <div className={styles.root}>
         <Outlet />
     </div>
