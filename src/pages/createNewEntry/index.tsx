@@ -1,7 +1,7 @@
 import React, { useState, useRef } from 'react';
 import { ClassNames, DayPicker } from 'react-day-picker';
 import ru from 'date-fns/locale/ru';
-import { format } from 'date-fns';
+import { differenceInCalendarDays, format } from 'date-fns';
 import stylesPicker from 'react-day-picker/dist/style.module.css';
 import cls from 'classnames';
 import { Link } from 'react-router-dom';
@@ -63,32 +63,6 @@ export const CreateNewEntry = () => {
                     <span className={styles.placeholder}>
                         {!dateValue && <span>Дата</span>}
                     </span>
-                    {calendarPopup.isOpen && createPortal(
-                        <div
-                            ref={calendarRef}
-                            style={{
-                                top: calendarPopup.top + 47,
-                                left: calendarPopup.left
-                            }}
-                            className={styles.calendarWrapper}
-                        >
-                            <DayPicker
-                                classNames={classNames}
-                                showOutsideDays
-                                defaultMonth={selectedDate}
-                                locale={ru}
-                                mode="single"
-                                selected={selectedDate}
-                                onDayClick={(date) => {
-                                    if (date) {
-                                        setSelectedDate(date);
-                                        setDateValue(format(date, 'dd.MM.yyyy'));
-                                        setCalendarPopup({ ...calendarPopup, isOpen: false });
-                                    }
-                                }}
-                            />
-                        </div>, document.body
-                    )}
                 </div>
                 <div className={styles.inputWrapper}>
                     <div className={styles.imageWrapper}>
@@ -104,6 +78,33 @@ export const CreateNewEntry = () => {
                     </select>
                 </div>
             </div>
+            {calendarPopup.isOpen && createPortal(
+                <div
+                    ref={calendarRef}
+                    style={{
+                        top: calendarPopup.top + 47,
+                        left: calendarPopup.left
+                    }}
+                    className={styles.calendarWrapper}
+                >
+                    <DayPicker
+                        classNames={classNames}
+                        showOutsideDays
+                        disabled={(date) => differenceInCalendarDays(date, new Date()) < 0}
+                        defaultMonth={selectedDate}
+                        locale={ru}
+                        mode="single"
+                        selected={selectedDate}
+                        onSelect={(date) => {
+                            if (date) {
+                                setSelectedDate(date);
+                                setDateValue(format(date, 'dd.MM.yyyy'));
+                                setCalendarPopup({ ...calendarPopup, isOpen: false });
+                            }
+                        }}
+                    />
+                </div>, document.body
+            )}
         </div>
     );
 };
