@@ -141,7 +141,7 @@
 
 .timeRoot {
   position: absolute;
-  top: -1px;
+  top: 0;
   left: 0;
 
   width: max-content;
@@ -168,8 +168,6 @@
 
   .timeWrapper {
     overflow-y: scroll;
-
-    max-height: 300px;
 
     &::-webkit-scrollbar {
       width: 5px;
