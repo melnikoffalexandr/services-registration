@@ -28,7 +28,7 @@
     }
   }
 
-  .dateTitle {
+  .title {
     margin-bottom: 8px;
 
     font-size: 14px;
@@ -38,6 +38,8 @@
   .dateWrapper {
     display: flex;
     justify-content: space-between;
+
+    margin-bottom: 32px;
 
     :first-child.inputWrapper {
       border-right: none;
@@ -97,6 +99,36 @@
 
         line-height: 22px;
       }
+    }
+  }
+
+  .createPostWrapper {
+    .textBoxWrapper {
+      .textBox {
+        margin-bottom: 8px;
+      }
+
+      .subText {
+        max-width: 196px;
+      }
+    }
+
+    .createPost {
+      display: flex;
+      flex-direction: column;
+
+      width: max-content;
+
+      span:first-child {
+        color: $light-blue;
+      }
+    }
+
+    .subText {
+      color: $text-gray;
+
+      font-size: 12px;
+      line-height: 16px;
     }
   }
 }

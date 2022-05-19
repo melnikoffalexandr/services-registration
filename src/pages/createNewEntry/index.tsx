@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, ChangeEvent } from 'react';
 import { ClassNames, DayPicker } from 'react-day-picker';
 import ru from 'date-fns/locale/ru';
 import { differenceInCalendarDays, format } from 'date-fns';
@@ -10,6 +10,8 @@ import { createPortal } from 'react-dom';
 import { ReactComponent as CalendarImg } from '../../assets/img/calendar.svg';
 import { ReactComponent as TimeImg } from '../../assets/img/time.svg';
 import { useOnClickOutside } from '../../utils/useOnClickOutside';
+
+import TextBox from '../../components/TextBox';
 
 import styles from './createNewEntry.module.scss';
 
@@ -27,9 +29,11 @@ const CreateNewEntry = () => {
     const calendarRef = useRef<HTMLDivElement>(null);
 
     const [calendarPopup, setCalendarPopup] = useState({ isOpen: false, top: 0, left: 0 });
+    const [isShowPostInput, setIsShowPostInput] = useState(false);
     const [selectedDate, setSelectedDate] = useState<Date>();
-    const [dateValue, setDateValue] = useState<string>('');
-    const [timeValue, setTimeValue] = useState<string>('');
+    const [dateValue, setDateValue] = useState('');
+    const [timeValue, setTimeValue] = useState('');
+    const [postValue, setPostValue] = useState('');
 
     useOnClickOutside(calendarPopup.isOpen, calendarRef, () => setCalendarPopup({ ...calendarPopup, isOpen: false }));
 
@@ -43,7 +47,7 @@ const CreateNewEntry = () => {
                     <div className={styles.cancel}>Не создавать</div>
                 </Link>
             </div>
-            <div className={styles.dateTitle}>Когда</div>
+            <div className={styles.title}>Когда</div>
             <div className={styles.dateWrapper}>
                 <div
                     className={styles.inputWrapper}
@@ -77,6 +81,26 @@ const CreateNewEntry = () => {
                         {timeArr.map((item) => <option key={item} value={item}>{item}</option>)}
                     </select>
                 </div>
+            </div>
+            <div className={styles.createPostWrapper}>
+                {isShowPostInput
+                    ? (
+                        <div className={styles.textBoxWrapper}>
+                            <div className={styles.title}>Пост</div>
+                            <TextBox
+                                className={styles.textBox}
+                                value={postValue}
+                                onChange={(event: ChangeEvent<HTMLInputElement>) => setPostValue(event.target.value)}
+                            />
+                            <div className={styles.subText}>Например, «№1» или «Сход-развал». Это необязательное поле</div>
+                        </div>
+                    )
+                    : (
+                        <div className={styles.createPost} onClick={() => setIsShowPostInput(true)}>
+                            <span>Добавить пост</span>
+                            <span className={styles.subText}>необязательно</span>
+                        </div>
+                    )}
             </div>
             {calendarPopup.isOpen && createPortal(
                 <div
