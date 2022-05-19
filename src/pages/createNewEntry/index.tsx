@@ -1,5 +1,5 @@
 import React, {
-    useState, useRef, ChangeEvent, useEffect,
+    useState, useRef, ChangeEvent, /* , useEffect, */
 } from 'react';
 import { ClassNames, DayPicker } from 'react-day-picker';
 import ru from 'date-fns/locale/ru';
@@ -8,12 +8,14 @@ import stylesPicker from 'react-day-picker/dist/style.module.css';
 import cls from 'classnames';
 import { Link } from 'react-router-dom';
 import { createPortal } from 'react-dom';
+import dayjs from 'dayjs';
 
 import { ReactComponent as CalendarImg } from '../../assets/img/calendar.svg';
 import { ReactComponent as TimeImg } from '../../assets/img/time.svg';
 import { useOnClickOutside } from '../../utils/useOnClickOutside';
-
 import TextBox from '../../components/TextBox';
+
+import { fetchAddEntryRequest } from '../../api';
 
 import styles from './createNewEntry.module.scss';
 
@@ -37,19 +39,34 @@ const CreateNewEntry = () => {
     const [timeValue, setTimeValue] = useState('');
     const [postValue, setPostValue] = useState('');
 
-    useEffect(() => {
-        if (dateValue !== '' && timeValue !== '') {
-            // @ts-ignore
-            window.Telegram.WebApp.MainButton.show();
-        }
-    }, [dateValue, timeValue]);
+    // useEffect(() => {
+    //     if (dateValue !== '' && timeValue !== '') {
+    //         // @ts-ignore
+    //         window.Telegram.WebApp.MainButton.show();
+    //     }
+    // }, [dateValue, timeValue]);
+
+    // @ts-ignore
+    //
 
     useOnClickOutside(calendarPopup.isOpen, calendarRef, () => setCalendarPopup({ ...calendarPopup, isOpen: false }));
 
     const timeArr = ['8:00', '8:30', '9:00', '9:30', '10:00', '10:30', '11:30', '12:00', '12:30', '13:00', '13:30', '14:00', '14:30', '15:00', '15:30', '16:00', '16:30', '17:00', '17:30', '18:00', '18:30', '19:00', '19:30', '20:00'];
 
+    const parsedDate = dayjs(selectedDate).format(`YYYY-MM-DDT${timeValue.length > 0 ? timeValue : '00:00'}:00Z`);
+
     return (
         <div className={styles.root}>
+            <button
+                type="button"
+                onClick={() => {
+                    fetchAddEntryRequest({ userId: '51673', date: parsedDate, post: postValue });
+                }}
+            >
+                Отправить тест
+            </button>
+            <div>{parsedDate}</div>
+
             <div className={styles.header}>
                 <div className={styles.title}>Создаём новую запись</div>
                 <Link to="/">

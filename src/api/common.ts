@@ -16,6 +16,7 @@ class ApiClient {
             timeout: 6000,
             withCredentials: true,
             headers: {
+                Accept: 'application/json',
                 'Content-Type': 'application/json',
             },
         });
@@ -25,11 +26,11 @@ class ApiClient {
         return this.api.get(`${baseUrl}/api/${url}?userId=${isDev ? 51673 : userId}`);
     }
 
-    post(url: string, { data }: AxiosRequestConfig) {
+    post(url: string, { data }: AxiosRequestConfig['data']) {
         return this.api.post(`${baseUrl}/api/${url}?userId=${isDev ? 51673 : userId}`, data);
     }
 
-    put(url: string, { data }: AxiosRequestConfig) {
+    put(url: string, { data }: AxiosRequestConfig['data']) {
         return this.api.put(`${baseUrl}/api/${url}?userId=${isDev ? 51673 : userId}`, data);
     }
 
