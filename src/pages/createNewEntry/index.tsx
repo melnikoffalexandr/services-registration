@@ -49,6 +49,8 @@ const CreateNewEntry = () => {
         if (dateValue !== '' && timeValue !== '') {
             const parsedDate = dayjs(selectedDate).format(`YYYY-MM-DDT${timeValue.length > 0 ? timeValue : '00:00'}:00`);
             // @ts-ignore
+            window.Telegram.WebApp.MainButton.setText('Далее');
+            // @ts-ignore
             window.Telegram.WebApp.MainButton.show();
             // @ts-ignore
             window.Telegram.WebApp.onEvent('mainButtonClicked', () => {
