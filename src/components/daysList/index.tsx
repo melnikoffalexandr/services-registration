@@ -24,7 +24,7 @@ const DaysList = () => {
     return (
         <>
             {daysList.map((list) => (
-                <div className={styles.root}>
+                <div key={list.id} className={styles.root}>
                     {list.entry.map((day) => <DayItem key={day.date} day={day} />)}
                 </div>
             ))}

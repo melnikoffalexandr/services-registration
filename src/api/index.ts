@@ -18,9 +18,9 @@ export const sendWebBotData = (params: {
 
 export const fetchAllEntriesRequest = (): AxiosPromise => ApiClient.get(`scheduler/getScheduler?userId=${isDev ? 51673 : userId}`);
 
-export const fetchAddEntryRequest = async (params: { date: string, post?: string }) => {
+export const fetchAddEntryRequest = async (params: { userId: string, date: string, post?: string }) => {
     try {
-        const { data, status } = await ApiClient.post(`scheduler/createRecordTemplate?userId=${isDev ? 51673 : userId}`, params);
+        const { data, status } = await ApiClient.post('scheduler/createRecordTemplate', params);
         if (status === 200) {
             await sendWebBotData({
                 chatId,
@@ -28,6 +28,8 @@ export const fetchAddEntryRequest = async (params: { date: string, post?: string
                 request: 'UserSetSchedulerRecord',
                 recordId: data,
             });
+            // @ts-ignore
+            await window.Telegram.WebApp.MainButton.hide();
         }
     } catch (err) {
         console.log(err);

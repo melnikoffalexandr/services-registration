@@ -21,11 +21,11 @@ class ApiClient {
         return this.api.get(`${baseUrl}/api/${url}`);
     }
 
-    post(url: string, data: any) {
+    post(url: string, data?: any) {
         return this.api.post(`${baseUrl}/api/${url}`, data);
     }
 
-    put(url: string, data: any) {
+    put(url: string, data?: any) {
         return this.api.put(`${baseUrl}/api/${url}`, data);
     }
 

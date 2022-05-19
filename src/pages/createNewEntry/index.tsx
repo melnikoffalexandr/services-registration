@@ -1,13 +1,13 @@
 import React, {
     useState, useRef, ChangeEvent, useEffect,
 } from 'react';
+import { createPortal } from 'react-dom';
+import { Link } from 'react-router-dom';
 import { ClassNames, DayPicker } from 'react-day-picker';
 import ru from 'date-fns/locale/ru';
 import { differenceInCalendarDays, format } from 'date-fns';
 import stylesPicker from 'react-day-picker/dist/style.module.css';
 import cls from 'classnames';
-import { Link } from 'react-router-dom';
-import { createPortal } from 'react-dom';
 import dayjs from 'dayjs';
 
 import { ReactComponent as CalendarImg } from '../../assets/img/calendar.svg';
@@ -16,6 +16,8 @@ import { useOnClickOutside } from '../../utils/useOnClickOutside';
 import TextBox from '../../components/TextBox';
 import { fetchAddEntryRequest } from '../../api';
 // import Button from '../../components/button';
+
+import { useAppSelector } from '../../utils/hooks';
 
 import styles from './createNewEntry.module.scss';
 
@@ -41,6 +43,8 @@ const CreateNewEntry = () => {
 
     useOnClickOutside(calendarPopup.isOpen, calendarRef, () => setCalendarPopup({ ...calendarPopup, isOpen: false }));
 
+    const userId = useAppSelector((state) => state.app.user.userId);
+
     const timeArr = ['8:00', '8:30', '9:00', '9:30', '10:00', '10:30', '11:30', '12:00',
         '12:30', '13:00', '13:30', '14:00', '14:30', '15:00', '15:30', '16:00', '16:30',
         '17:00', '17:30', '18:00', '18:30', '19:00', '19:30', '20:00'];
@@ -55,7 +59,7 @@ const CreateNewEntry = () => {
             window.Telegram.WebApp.MainButton.show();
             // @ts-ignore
             window.Telegram.WebApp.onEvent('mainButtonClicked', () => {
-                fetchAddEntryRequest({ date: parsedDate, post: postValue });
+                fetchAddEntryRequest({ userId, date: parsedDate, post: postValue });
             });
         }
     }, [dateValue, timeValue]);
@@ -133,7 +137,7 @@ const CreateNewEntry = () => {
                 {/* <div
                     className={styles.buttonWrapper}
                     onClick={() => {
-                        fetchAddEntryRequest({ date: parsedDate, post: postValue });
+                        fetchAddEntryRequest({ userId, date: parsedDate, post: postValue });
                     }}
                 >
                     <Button text="Далее" />
