@@ -1,5 +1,9 @@
 export interface Entry {
-    id: string,
     date: string,
     count: number
 }
+
+export type EntriesList = {
+    id: number,
+    entry: Entry[]
+}[];

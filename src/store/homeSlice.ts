@@ -1,9 +1,9 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-import { Entry } from '../types/entries';
+import { EntriesList } from '../types/entries';
 import { fetchAllEntriesRequest } from '../api';
 
-export const fetchAllEntries = createAsyncThunk<Entry[], undefined, { rejectValue: string }>(
+export const fetchAllEntries = createAsyncThunk<EntriesList, undefined, { rejectValue: string }>(
     'home/fetchEntries',
     async (_, { rejectWithValue }) => {
         try {
@@ -19,7 +19,7 @@ type HomeState = {
     searchText: string;
     entries: {
         loading: boolean;
-        data: Entry[];
+        data: EntriesList;
         error: string | null;
     }
 };

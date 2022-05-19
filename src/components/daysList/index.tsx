@@ -22,9 +22,13 @@ const DaysList = () => {
     }
 
     return (
-        <div className={styles.root}>
-            {daysList.map((day) => <DayItem key={day.date} day={day} />)}
-        </div>
+        <>
+            {daysList.map((list) => (
+                <div className={styles.root}>
+                    {list.entry.map((day) => <DayItem key={day.date} day={day} />)}
+                </div>
+            ))}
+        </>
     );
 };
 
