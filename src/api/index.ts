@@ -15,7 +15,7 @@ export const sendWebBotData = (params: {
     recordId?: string
 }): AxiosPromise => ApiClient.post('webHandler/update', params);
 
-export const fetchAllEntriesRequest = (): AxiosPromise => ApiClient.get(`scheduler/getScheduler?userId=${userId || '51673'}`);
+export const fetchAllEntriesRequest = (): AxiosPromise => ApiClient.get(`scheduler/getScheduler?userId=${userId || '51673'}`); // убрать перед продом(id для теста)
 
 export const fetchAddEntryRequest = async (params: { userId: string, date: string, post?: string }) => {
     try {
