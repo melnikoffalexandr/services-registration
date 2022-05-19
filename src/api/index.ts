@@ -31,7 +31,7 @@ export const fetchAddEntryRequest = async (params: { userId: string, date: strin
                 recordId: data,
             });
             // @ts-ignore
-            window.Telegram.WebApp.MainButton.close();
+            window.Telegram.WebApp.close();
         }
     } catch (err) {
         console.log(err);
