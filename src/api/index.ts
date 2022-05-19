@@ -20,6 +20,8 @@ export const fetchAllEntriesRequest = (): AxiosPromise => ApiClient.get(`schedul
 
 export const fetchAddEntryRequest = async (params: { userId: string, date: string, post?: string }) => {
     try {
+        // @ts-ignore
+        window.Telegram.WebApp.MainButton.showProgress();
         const { data, status } = await ApiClient.post('scheduler/createRecordTemplate', params);
         if (status === 200) {
             await sendWebBotData({
@@ -29,7 +31,7 @@ export const fetchAddEntryRequest = async (params: { userId: string, date: strin
                 recordId: data,
             });
             // @ts-ignore
-            await window.Telegram.WebApp.MainButton.hide();
+            window.Telegram.WebApp.MainButton.close();
         }
     } catch (err) {
         console.log(err);
