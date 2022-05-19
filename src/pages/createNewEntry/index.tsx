@@ -45,9 +45,10 @@ const CreateNewEntry = () => {
         '12:30', '13:00', '13:30', '14:00', '14:30', '15:00', '15:30', '16:00', '16:30',
         '17:00', '17:30', '18:00', '18:30', '19:00', '19:30', '20:00'];
 
+    const parsedDate = dayjs(selectedDate).format(`YYYY-MM-DDT${timeValue.length > 0 ? timeValue : '00:00'}:00`);
+
     useEffect(() => {
         if (dateValue !== '' && timeValue !== '') {
-            const parsedDate = dayjs(selectedDate).format(`YYYY-MM-DDT${timeValue.length > 0 ? timeValue : '00:00'}:00`);
             // @ts-ignore
             window.Telegram.WebApp.MainButton.setText('Далее');
             // @ts-ignore
@@ -64,7 +65,15 @@ const CreateNewEntry = () => {
             <div className={styles.header}>
                 <div className={styles.title}>Создаём новую запись</div>
                 <Link to="/">
-                    <div className={styles.cancel}>Не создавать</div>
+                    <div
+                        className={styles.cancel}
+                        onClick={() => {
+                        // @ts-ignore
+                            window.Telegram.WebApp.MainButton.hide();
+                        }}
+                    >
+                        Не создавать
+                    </div>
                 </Link>
             </div>
             <div className={styles.title}>Когда</div>
