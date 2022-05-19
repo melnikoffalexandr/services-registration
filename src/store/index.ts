@@ -2,11 +2,13 @@ import { configureStore } from '@reduxjs/toolkit';
 
 import appReducer from './appSlice';
 import homeReducer from './homeSlice';
+import newEntryReducer from './newEntrySlice';
 
 const store = configureStore({
     reducer: {
         app: appReducer,
         home: homeReducer,
+        newEntry: newEntryReducer,
     },
 });
 

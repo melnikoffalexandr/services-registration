@@ -9,14 +9,14 @@ const chatId = webAppChatId();
 type AppState = {
     user: {
         userId: string,
-        chatId: number | null,
+        chatId: number,
     },
 };
 
 const initialState: AppState = {
     user: {
         userId: '',
-        chatId: null,
+        chatId: 0,
     },
 };
 
