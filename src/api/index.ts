@@ -26,7 +26,7 @@ export const fetchAddEntryRequest = async (params: { userId: string, date: strin
         if (status === 200) {
             await sendWebBotData({
                 chatId,
-                userId: userId || '51673',
+                userId: params.userId,
                 request: 'UserSetSchedulerRecord',
                 recordId: data,
             });
