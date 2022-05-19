@@ -13,6 +13,16 @@ import { useOnClickOutside } from '../../utils/useOnClickOutside';
 
 import styles from './createNewEntry.module.scss';
 
+const calendarClassNames: ClassNames = {
+    ...stylesPicker,
+    root: styles.pickerRoot,
+    caption_label: styles.captionLabel,
+    day_selected: styles.daySelected,
+    day_outside: styles.dayOutside,
+    button: cls(stylesPicker.button, styles.button),
+    nav_button: cls(stylesPicker.nav_button, styles.navButton),
+};
+
 const CreateNewEntry = () => {
     const calendarRef = useRef<HTMLDivElement>(null);
 
@@ -22,16 +32,6 @@ const CreateNewEntry = () => {
     const [timeValue, setTimeValue] = useState<string>('');
 
     useOnClickOutside(calendarPopup.isOpen, calendarRef, () => setCalendarPopup({ ...calendarPopup, isOpen: false }));
-
-    const classNames: ClassNames = {
-        ...stylesPicker,
-        root: styles.pickerRoot,
-        caption_label: styles.captionLabel,
-        day_selected: styles.daySelected,
-        day_outside: styles.dayOutside,
-        button: cls(stylesPicker.button, styles.button),
-        nav_button: cls(stylesPicker.nav_button, styles.navButton),
-    };
 
     const timeArr = ['8:00', '8:30', '9:00', '9:30', '10:00', '10:30', '11:30', '12:00', '12:30', '13:00', '13:30', '14:00', '14:30', '15:00', '15:30', '16:00', '16:30', '17:00', '17:30', '18:00', '18:30', '19:00', '19:30', '20:00'];
 
@@ -88,7 +88,7 @@ const CreateNewEntry = () => {
                     className={styles.calendarWrapper}
                 >
                     <DayPicker
-                        classNames={classNames}
+                        classNames={calendarClassNames}
                         showOutsideDays
                         disabled={(date) => differenceInCalendarDays(date, new Date()) < 0}
                         defaultMonth={selectedDate}
