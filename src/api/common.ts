@@ -1,10 +1,5 @@
-import axios, { AxiosInstance, AxiosRequestConfig } from 'axios';
+import axios, { AxiosInstance } from 'axios';
 
-import { getLocationSearch } from '../utils/locationSearch';
-
-const { userId } = getLocationSearch();
-
-const isDev = process.env.NODE_ENV === 'development';
 const baseUrl = 'https://telegram-crm.rossko.dev';
 
 class ApiClient {
@@ -23,19 +18,19 @@ class ApiClient {
     }
 
     get(url: string) {
-        return this.api.get(`${baseUrl}/api/${url}?userId=${isDev ? 51673 : userId}`);
+        return this.api.get(`${baseUrl}/api/${url}`);
     }
 
-    post(url: string, { data }: AxiosRequestConfig['data']) {
-        return this.api.post(`${baseUrl}/api/${url}?userId=${isDev ? 51673 : userId}`, data);
+    post(url: string, data: any) {
+        return this.api.post(`${baseUrl}/api/${url}`, data);
     }
 
-    put(url: string, { data }: AxiosRequestConfig['data']) {
-        return this.api.put(`${baseUrl}/api/${url}?userId=${isDev ? 51673 : userId}`, data);
+    put(url: string, data: any) {
+        return this.api.put(`${baseUrl}/api/${url}`, data);
     }
 
     delete(url: string) {
-        return this.api.delete(`${baseUrl}/api/${url}?userId=${isDev ? 51673 : userId}`);
+        return this.api.delete(`${baseUrl}/api/${url}`);
     }
 }
 

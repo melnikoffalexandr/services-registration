@@ -1,27 +1,34 @@
 import { AxiosPromise } from 'axios';
 
+import { getLocationSearch } from '../utils/locationSearch';
+
 import ApiClient from './common';
 
 // @ts-ignore
 const chatId = window?.Telegram?.WebApp?.initDataUnsafe?.user?.id;
+const isDev = process.env.NODE_ENV === 'development';
+const { userId } = getLocationSearch();
 
-export const sendWebBotData = (data: { chatId: number, userId: string, request: string, timezone: number, recordId?: string }): AxiosPromise => ApiClient.post('webHandler/update', data);
+export const sendWebBotData = (params: {
+    chatId: number,
+    userId: string,
+    request: string,
+    recordId?: string
+}): AxiosPromise => ApiClient.post('webHandler/update', params);
 
-export const fetchAllEntriesRequest = (): AxiosPromise => ApiClient.get('scheduler/getScheduler');
+export const fetchAllEntriesRequest = (): AxiosPromise => ApiClient.get(`scheduler/getScheduler?userId=${isDev ? 51673 : userId}`);
 
-export const fetchAddEntryRequest = (data: { userId: string, date: string, post?: string }) => {
-    const test = data.date.charAt(data.date.length - 4);
-    console.log(test);
+export const fetchAddEntryRequest = async (params: { date: string, post?: string }) => {
     try {
-        ApiClient
-            .post('scheduler/createRecordTemplate', { data })
-            .then((res) => sendWebBotData({
+        const { data, status } = await ApiClient.post(`scheduler/createRecordTemplate?userId=${isDev ? 51673 : userId}`, params);
+        if (status === 200) {
+            await sendWebBotData({
                 chatId,
-                userId: data.userId,
+                userId: userId || '51673',
                 request: 'UserSetSchedulerRecord',
-                timezone: +data.date.charAt(data.date.length - 4),
-                recordId: res.data,
-            }));
+                recordId: data,
+            });
+        }
     } catch (err) {
         console.log(err);
     }

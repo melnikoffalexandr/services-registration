@@ -7,8 +7,8 @@ import styles from './button.module.scss';
 
 interface Props {
     text: string;
-    className: string;
-    withIcon: boolean;
+    className?: string;
+    withIcon?: boolean;
 }
 
 const Button:FC<Props> = ({ text, className = '', withIcon = false }) => (
