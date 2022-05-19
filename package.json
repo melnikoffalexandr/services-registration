@@ -6,7 +6,6 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "server": "json-server --watch db.json -p 3004 -d 500",
     "lint:scripts": "eslint src --ext .ts,.tsx,.jsx",
     "lint:styles": "stylelint \"src/**/*.scss\""
   },
