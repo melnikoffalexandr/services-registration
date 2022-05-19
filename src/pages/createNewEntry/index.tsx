@@ -1,4 +1,6 @@
-import React, { useState, useRef, ChangeEvent } from 'react';
+import React, {
+    useState, useRef, ChangeEvent, useEffect,
+} from 'react';
 import { ClassNames, DayPicker } from 'react-day-picker';
 import ru from 'date-fns/locale/ru';
 import { differenceInCalendarDays, format } from 'date-fns';
@@ -34,6 +36,13 @@ const CreateNewEntry = () => {
     const [dateValue, setDateValue] = useState('');
     const [timeValue, setTimeValue] = useState('');
     const [postValue, setPostValue] = useState('');
+
+    useEffect(() => {
+        if (dateValue !== '' && timeValue !== '') {
+            // @ts-ignore
+            window.Telegram.WebApp.MainButton.show();
+        }
+    }, [dateValue, timeValue]);
 
     useOnClickOutside(calendarPopup.isOpen, calendarRef, () => setCalendarPopup({ ...calendarPopup, isOpen: false }));
 
