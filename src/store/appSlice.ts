@@ -1,4 +1,10 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { createSlice } from '@reduxjs/toolkit';
+
+import { getLocationSearch } from '../utils';
+
+// @ts-ignore
+const chatId = window?.Telegram?.WebApp?.initDataUnsafe?.user?.id;
+const { userId } = getLocationSearch();
 
 type AppState = {
     user: {
@@ -18,8 +24,8 @@ const appSlice = createSlice({
     name: 'app',
     initialState,
     reducers: {
-        setUser(state, action: PayloadAction<AppState['user']>) {
-            state.user = action.payload || 51673;
+        setUser(state) {
+            state.user = { userId, chatId };
         },
     },
 });

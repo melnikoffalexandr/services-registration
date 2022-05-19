@@ -1,6 +1,6 @@
 import { AxiosPromise } from 'axios';
 
-import { getLocationSearch } from '../utils/locationSearch';
+import { getLocationSearch } from '../utils';
 
 import ApiClient from './common';
 
