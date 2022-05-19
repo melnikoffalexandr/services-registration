@@ -6,6 +6,9 @@ import DaysList from '../../components/daysList';
 
 // import styles from './homePage.module.scss';
 
+console.log('window', window);
+console.log('process', process?.env);
+
 const HomePage = () => (
     <>
         <Navbar />
