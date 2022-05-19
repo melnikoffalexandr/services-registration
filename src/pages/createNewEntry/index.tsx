@@ -12,12 +12,17 @@ import dayjs from 'dayjs';
 
 import { ReactComponent as CalendarImg } from '../../assets/img/calendar.svg';
 import { ReactComponent as TimeImg } from '../../assets/img/time.svg';
-import { useOnClickOutside } from '../../utils/useOnClickOutside';
 import TextBox from '../../components/TextBox';
-import { fetchAddEntryRequest } from '../../api';
 // import Button from '../../components/button';
-
+import { fetchAddEntryRequest } from '../../api';
+import { useOnClickOutside } from '../../utils/useOnClickOutside';
 import { useAppSelector } from '../../utils/hooks';
+import {
+    webAppMainButtonHide,
+    webAppMainButtonClick,
+    webAppMainButtonSetText,
+    webAppMainButtonShow,
+} from '../../utils/telegram';
 
 import styles from './createNewEntry.module.scss';
 
@@ -53,12 +58,9 @@ const CreateNewEntry = () => {
 
     useEffect(() => {
         if (dateValue !== '' && timeValue !== '') {
-            // @ts-ignore
-            window.Telegram.WebApp.MainButton.setText('Далее');
-            // @ts-ignore
-            window.Telegram.WebApp.MainButton.show();
-            // @ts-ignore
-            window.Telegram.WebApp.onEvent('mainButtonClicked', () => {
+            webAppMainButtonSetText('Далее');
+            webAppMainButtonShow();
+            webAppMainButtonClick(() => {
                 fetchAddEntryRequest({ userId, date: parsedDate, post: postValue });
             });
         }
@@ -71,10 +73,7 @@ const CreateNewEntry = () => {
                 <Link to="/">
                     <div
                         className={styles.cancel}
-                        onClick={() => {
-                        // @ts-ignore
-                            window.Telegram.WebApp.MainButton.hide();
-                        }}
+                        onClick={() => webAppMainButtonHide()}
                     >
                         Не создавать
                     </div>

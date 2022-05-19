@@ -1,10 +1,10 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 import { getLocationSearch } from '../utils';
+import { webAppChatId } from '../utils/telegram';
 
-// @ts-ignore
-const chatId = window?.Telegram?.WebApp?.initDataUnsafe?.user?.id;
 const { userId } = getLocationSearch();
+const chatId = webAppChatId();
 
 type AppState = {
     user: {

@@ -38,20 +38,20 @@ export interface TelegramApi {
         isActive: boolean;
         isProgressVisible: boolean;
         setText: (text: string) => void;
-        // onClick: (callback) => void;
+        onClick: (callback: any) => void;
         show: () => void;
         hide: () => void;
         enable: () => void;
         disable: () => void;
-        showProgress: (leaveActive: boolean) => void;
+        showProgress: (leaveActive?: boolean) => void;
         hideProgress: () => void;
         setParams: (params: {
             text?: string, color?: string, text_color?: string, is_active?: boolean, is_visible?: boolean
         }) => void;
     };
-    // onEvent: (eventType, eventHandler) => void;
-    // offEvent: (eventType, eventHandler) => void;
-    // sendData: (data) => void;
+    onEvent: (eventType: string, eventHandler: () => void) => void;
+    offEvent: (eventType: string, eventHandler: () => void) => void;
+    sendData: (data: any) => void;
     ready: () => void;
     expand: () => void;
     close: () => void;
