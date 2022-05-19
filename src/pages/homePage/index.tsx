@@ -3,7 +3,7 @@ import React from 'react';
 import Navbar from '../../components/navbar';
 import Search from '../../components/search';
 import DaysList from '../../components/daysList';
-import { getLocationSearch } from '../../utils';
+import { getLocationSearch } from '../../utils/locationSearch';
 
 const data = getLocationSearch();
 
