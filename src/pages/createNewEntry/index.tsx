@@ -7,9 +7,9 @@ import TextBox from '../../components/TextBox';
 import { useAppDispatch, useAppSelector } from '../../utils/hooks';
 import {
     webAppMainButtonHide,
-    webAppMainButtonClick,
+    // webAppMainButtonClick,
     webAppMainButtonSetText,
-    webAppMainButtonShow,
+    webAppMainButtonShow, webAppMainButtonClickEvent,
 } from '../../utils/telegram';
 import {
     addEntry, setCalendar, setPost, setShowPostInput, setTime,
@@ -17,7 +17,7 @@ import {
 import DatePicker from '../../components/DatePicker';
 import { ReactComponent as CalendarImg } from '../../assets/img/calendar.svg';
 import { ReactComponent as TimeImg } from '../../assets/img/time.svg';
-// import Button from '../../components/Button';
+import Button from '../../components/Button';
 
 import styles from './createNewEntry.module.scss';
 
@@ -39,9 +39,10 @@ const CreateNewEntry = () => {
         if (date !== '' && time !== '') {
             webAppMainButtonSetText('Далее');
             webAppMainButtonShow();
-            webAppMainButtonClick(() => {
-                dispatch(addEntry({ date: parsedDate, post }));
-            });
+            webAppMainButtonClickEvent(() => dispatch(addEntry({ date: parsedDate, post })));
+            // webAppMainButtonClick(() => {
+            //     dispatch(addEntry({ date: parsedDate, post }));
+            // });
         }
     }, [date, time]);
 
@@ -116,14 +117,14 @@ const CreateNewEntry = () => {
                             <span className={styles.subText}>необязательно</span>
                         </div>
                     )}
-                {/* <div
+                <div
                     className={styles.buttonWrapper}
                     onClick={() => {
                         dispatch(addEntry({ date: parsedDate, post }));
                     }}
                 >
                     <Button text="Временная кнопка, аналог главной кнопки" />
-                </div> */}
+                </div>
             </div>
         </div>
     );
