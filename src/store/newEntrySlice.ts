@@ -29,6 +29,7 @@ export const addEntry = createAsyncThunk<string, { date: string, post: string },
                     webAppClose();
                 }
             }
+
             return recordId;
         } catch (err) {
             return rejectWithValue('Не удалось добавить запись');

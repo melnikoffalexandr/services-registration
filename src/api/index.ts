@@ -20,7 +20,7 @@ export const sendWebBotData = (params: {
     const {
         chatId, userId, request, rest,
     } = params;
-    return axiosClient.post('webHandler/update', {
+    return axiosClient.post('api/webHandler/update', {
         chatId, userId, request, ...rest,
     });
 };
