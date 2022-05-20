@@ -1,7 +1,6 @@
-import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 import { fetchAddEntryRequest, sendWebBotData } from '../api';
-
 import { webAppClose, webAppMainButtonShowProgress } from '../utils/telegram';
 
 import { AppState } from './appSlice';
@@ -38,7 +37,10 @@ export const addEntry = createAsyncThunk<string, { date: string, post: string },
 );
 
 export type NewEntrySliceState = {
-    isShowCalendar: boolean,
+    calendar: {
+        isVisible: boolean,
+        position: { top: number, left: number }
+    }
     isShowPostInput: boolean,
     date: string,
     time: string,
@@ -46,7 +48,10 @@ export type NewEntrySliceState = {
 };
 
 const initialState: NewEntrySliceState = {
-    isShowCalendar: false,
+    calendar: {
+        isVisible: false,
+        position: { top: 0, left: 0 },
+    },
     isShowPostInput: false,
     date: '',
     time: '',
@@ -56,9 +61,27 @@ const initialState: NewEntrySliceState = {
 const newEntrySlice = createSlice({
     name: 'newEntry',
     initialState,
-    reducers: {},
+    reducers: {
+        setCalendar(state, { payload }: PayloadAction<NewEntrySliceState['calendar']>) {
+            state.calendar = payload;
+        },
+        setShowPostInput(state, { payload }: PayloadAction<boolean>) {
+            state.isShowPostInput = payload;
+        },
+        setDate(state, { payload }: PayloadAction<string>) {
+            state.date = payload;
+        },
+        setTime(state, { payload }: PayloadAction<string>) {
+            state.time = payload;
+        },
+        setPost(state, { payload }: PayloadAction<string>) {
+            state.post = payload;
+        },
+    },
 });
 
-// export const { } = newEntrySlice.actions;
+export const {
+    setCalendar, setShowPostInput, setDate, setTime, setPost,
+} = newEntrySlice.actions;
 
 export default newEntrySlice.reducer;

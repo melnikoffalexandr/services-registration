@@ -1,0 +1,47 @@
+@import "src/styles/variables";
+
+.calendarWrapper {
+  position: absolute;
+}
+
+.pickerRoot {
+  position: absolute;
+
+  border: 1px solid rgb(0 0 0 / 10%);
+  border-radius: 0 0 8px 8px;
+  background-color: $white;
+
+  box-shadow:
+    0 100px 80px rgb(0 0 0 / 3%),
+    0 41.7776px 33.4221px rgb(0 0 0 / 2.16%),
+    0 22.3363px 17.869px rgb(0 0 0 / 1.79%),
+    0 12.5216px 10.0172px rgb(0 0 0 / 1.5%),
+    0 6.6501px 5.32px rgb(0 0 0 / 1.21%),
+    0 2.7672px 2.2138px rgb(0 0 0 / 0.843%);
+
+  .captionLabel {
+    margin: 0 10px;
+
+    text-transform: capitalize;
+  }
+
+  .button:hover,
+  .button:active {
+    border: $red;
+    background-color: $light-red;
+  }
+
+  .button:focus {
+    border: none;
+    background-color: transparent;
+  }
+
+  .dayOutside {
+    color: $text-gray;
+  }
+
+  .daySelected {
+    border-color: $red;
+    background-color: $light-red;
+  }
+}

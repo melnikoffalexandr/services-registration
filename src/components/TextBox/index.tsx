@@ -6,7 +6,7 @@ import cls from 'classnames';
 
 import { useOnClickOutside } from '../../utils/useOnClickOutside';
 
-import styles from './TextBox.module.scss';
+import styles from './textBox.module.scss';
 
 interface Props {
     className?: string;

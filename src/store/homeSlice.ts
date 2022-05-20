@@ -40,8 +40,8 @@ const homeSlice = createSlice({
     name: 'home',
     initialState,
     reducers: {
-        setSearchText(state, action: PayloadAction<string>) {
-            state.searchText = action.payload;
+        setSearchText(state, { payload }: PayloadAction<string>) {
+            state.searchText = payload;
         },
     },
     extraReducers: (builder) => {

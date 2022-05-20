@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 
-import DayItem from '../dayItem';
+import DayItem from '../DayItem';
 import { useAppDispatch, useAppSelector } from '../../utils/hooks';
 import { getAllEntries } from '../../store/homeSlice';
 import { ReactComponent as LoaderImg } from '../../assets/img/loader.svg';

@@ -1,8 +1,8 @@
 import React from 'react';
 
-import Navbar from '../../components/navbar';
-import Search from '../../components/search';
-import DaysList from '../../components/daysList';
+import Navbar from '../../components/Navbar';
+import Search from '../../components/Search';
+import DaysList from '../../components/DaysList';
 
 // import styles from './homePage.module.scss';
 
