@@ -16,7 +16,7 @@ export const addEntry = createAsyncThunk<string, { date: string, post: string },
             const { data: recordId, status } = await fetchAddEntryRequest({ userId, date, post });
 
             if (status === 200) {
-                await sendWebBotData({
+                const { status: webBotStatus } = await sendWebBotData({
                     chatId,
                     userId,
                     request: 'UserSetSchedulerRecord',
@@ -24,7 +24,10 @@ export const addEntry = createAsyncThunk<string, { date: string, post: string },
                         recordId,
                     },
                 });
-                webAppClose();
+
+                if (webBotStatus === 200) {
+                    webAppClose();
+                }
             }
             return recordId;
         } catch (err) {
