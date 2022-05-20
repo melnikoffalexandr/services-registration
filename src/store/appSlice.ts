@@ -6,7 +6,7 @@ import { webAppChatId } from '../utils/telegram';
 const { userId } = getLocationSearch();
 const chatId = webAppChatId();
 
-type AppState = {
+export type AppState = {
     user: {
         userId: string,
         chatId: number,

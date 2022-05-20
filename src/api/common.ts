@@ -1,37 +1,20 @@
-import axios, { AxiosInstance } from 'axios';
+import axios, { AxiosRequestConfig, AxiosResponse as OriginalAxiosResponse } from 'axios';
 
-const baseUrl = 'https://telegram-crm.rossko.dev';
+import config from '../config';
 
-class ApiClient {
-    private api: AxiosInstance;
-
-    constructor() {
-        this.api = axios.create({
-            baseURL: baseUrl,
-            timeout: 6000,
-            withCredentials: true,
-            headers: {
-                Accept: 'application/json',
-                'Content-Type': 'application/json',
-            },
-        });
-    }
-
-    get(url: string) {
-        return this.api.get(`${baseUrl}/api/${url}`);
-    }
-
-    post(url: string, data?: any) {
-        return this.api.post(`${baseUrl}/api/${url}`, data);
-    }
-
-    put(url: string, data?: any) {
-        return this.api.put(`${baseUrl}/api/${url}`, data);
-    }
-
-    delete(url: string) {
-        return this.api.delete(`${baseUrl}/api/${url}`);
-    }
+interface AxiosResponse<TResult> extends OriginalAxiosResponse {
+    data: TResult;
 }
+export type AxiosPromise<TResult> = Promise<AxiosResponse<TResult>>;
 
-export default new ApiClient();
+export const httpConfig: AxiosRequestConfig = {
+    baseURL: config.BASE_URL,
+    timeout: 6000,
+    withCredentials: true,
+    headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+    },
+};
+
+export const axiosClient = axios.create(httpConfig);

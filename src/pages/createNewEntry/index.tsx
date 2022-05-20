@@ -13,16 +13,17 @@ import dayjs from 'dayjs';
 import { ReactComponent as CalendarImg } from '../../assets/img/calendar.svg';
 import { ReactComponent as TimeImg } from '../../assets/img/time.svg';
 import TextBox from '../../components/TextBox';
-// import Button from '../../components/button';
-import { fetchAddEntryRequest } from '../../api';
+import Button from '../../components/button';
 import { useOnClickOutside } from '../../utils/useOnClickOutside';
-import { useAppSelector } from '../../utils/hooks';
+import { useAppDispatch } from '../../utils/hooks';
 import {
     webAppMainButtonHide,
     webAppMainButtonClick,
     webAppMainButtonSetText,
     webAppMainButtonShow,
 } from '../../utils/telegram';
+
+import { addEntry } from '../../store/newEntrySlice';
 
 import styles from './createNewEntry.module.scss';
 
@@ -37,6 +38,7 @@ const calendarClassNames: ClassNames = {
 };
 
 const CreateNewEntry = () => {
+    const dispatch = useAppDispatch();
     const calendarRef = useRef<HTMLDivElement>(null);
 
     const [calendarPopup, setCalendarPopup] = useState({ isOpen: false, top: 0, left: 0 });
@@ -47,8 +49,6 @@ const CreateNewEntry = () => {
     const [postValue, setPostValue] = useState('');
 
     useOnClickOutside(calendarPopup.isOpen, calendarRef, () => setCalendarPopup({ ...calendarPopup, isOpen: false }));
-
-    const userId = useAppSelector((state) => state.app.user.userId);
 
     const timeArr = ['8:00', '8:30', '9:00', '9:30', '10:00', '10:30', '11:30', '12:00',
         '12:30', '13:00', '13:30', '14:00', '14:30', '15:00', '15:30', '16:00', '16:30',
@@ -61,7 +61,7 @@ const CreateNewEntry = () => {
             webAppMainButtonSetText('Далее');
             webAppMainButtonShow();
             webAppMainButtonClick(() => {
-                fetchAddEntryRequest({ userId, date: parsedDate, post: postValue });
+                dispatch(addEntry({ date: parsedDate, post: postValue }));
             });
         }
     }, [dateValue, timeValue]);
@@ -133,14 +133,14 @@ const CreateNewEntry = () => {
                             <span className={styles.subText}>необязательно</span>
                         </div>
                     )}
-                {/* <div
+                <div
                     className={styles.buttonWrapper}
                     onClick={() => {
-                        fetchAddEntryRequest({ userId, date: parsedDate, post: postValue });
+                        dispatch(addEntry({ date: parsedDate, post: postValue }));
                     }}
                 >
-                    <Button text="Далее" />
-                </div> */}
+                    <Button text="Временная кнопка, аналог главной кнопки" />
+                </div>
             </div>
             {calendarPopup.isOpen && createPortal(
                 <div

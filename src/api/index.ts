@@ -1,36 +1,26 @@
-import { AxiosPromise } from 'axios';
+import { EntriesList } from '../types/entries';
 
-import { getLocationSearch } from '../utils';
-import { webAppChatId, webAppClose, webAppMainButtonShowProgress } from '../utils/telegram';
+import { axiosClient, AxiosPromise } from './common';
 
-import ApiClient from './common';
+export function fetchAllEntriesRequest(params: { userId: string }): AxiosPromise<EntriesList> {
+    const { userId } = params;
+    return axiosClient.get(`api/scheduler/getScheduler?userId=${userId}`);
+}
 
-const chatId = webAppChatId();
-const { userId } = getLocationSearch();
+export function fetchAddEntryRequest(params: { userId: string, date: string, post?: string }): AxiosPromise<string> {
+    return axiosClient.post('api/scheduler/createRecordTemplate', params);
+}
 
 export const sendWebBotData = (params: {
     chatId: number,
     userId: string,
     request: string,
-    recordId?: string
-}): AxiosPromise => ApiClient.post('webHandler/update', params);
-
-export const fetchAllEntriesRequest = (): AxiosPromise => ApiClient.get(`scheduler/getScheduler?userId=${userId || '51673'}`); // убрать перед продом(id для теста)
-
-export const fetchAddEntryRequest = async (params: { userId: string, date: string, post?: string }) => {
-    try {
-        webAppMainButtonShowProgress();
-        const { data, status } = await ApiClient.post('scheduler/createRecordTemplate', params);
-        if (status === 200) {
-            await sendWebBotData({
-                chatId,
-                userId: params.userId,
-                request: 'UserSetSchedulerRecord',
-                recordId: data,
-            });
-            webAppClose();
-        }
-    } catch (err) {
-        console.log(err);
-    }
+    rest?: Record<string, any>
+}) => {
+    const {
+        chatId, userId, request, rest,
+    } = params;
+    return axiosClient.post('webHandler/update', {
+        chatId, userId, request, ...rest,
+    });
 };

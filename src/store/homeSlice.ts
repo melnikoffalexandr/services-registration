@@ -2,20 +2,23 @@ import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 import { EntriesList } from '../types/entries';
 import { fetchAllEntriesRequest } from '../api';
+import { getLocationSearch } from '../utils';
 
-export const fetchAllEntries = createAsyncThunk<EntriesList, undefined, { rejectValue: string }>(
+const { userId } = getLocationSearch();
+
+export const getAllEntries = createAsyncThunk<EntriesList, undefined, { rejectValue: string }>(
     'home/fetchEntries',
     async (_, { rejectWithValue }) => {
         try {
-            const response = await fetchAllEntriesRequest();
-            return response.data;
-        } catch (err) {
-            return rejectWithValue('Server Error Test');
+            const { data } = await fetchAllEntriesRequest({ userId: userId || '51673' });
+            return data;
+        } catch (e) {
+            return rejectWithValue('Не удалось получить записи');
         }
     },
 );
 
-type HomeState = {
+export type HomeState = {
     searchText: string;
     entries: {
         loading: boolean;
@@ -43,15 +46,15 @@ const homeSlice = createSlice({
     },
     extraReducers: (builder) => {
         builder
-            .addCase(fetchAllEntries.pending, (state) => {
+            .addCase(getAllEntries.pending, (state) => {
                 state.entries.loading = true;
                 state.entries.error = '';
             })
-            .addCase(fetchAllEntries.fulfilled, (state, { payload }) => {
+            .addCase(getAllEntries.fulfilled, (state, { payload }) => {
                 state.entries.loading = false;
                 state.entries.data = payload;
             })
-            .addCase(fetchAllEntries.rejected, (state, { payload }) => {
+            .addCase(getAllEntries.rejected, (state, { payload }) => {
                 if (payload) {
                     state.entries.loading = false;
                     state.entries.error = payload;
