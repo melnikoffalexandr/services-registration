@@ -4,7 +4,7 @@ import React, {
 } from 'react';
 import cls from 'classnames';
 
-import { useOnClickOutside } from '../../utils/useOnClickOutside';
+import { useOnClickOutside } from '../../utils/hooks/useOnClickOutside';
 
 import styles from './textBox.module.scss';
 

@@ -4,10 +4,11 @@ import React, {
 import cls from 'classnames';
 
 import { useAppDispatch, useAppSelector } from '../../utils/hooks';
-import { getSchedulerSearch, setSearchText } from '../../store/homeSlice';
+import { clearSearchResult, getSchedulerSearch, setSearchText } from '../../store/homeSlice';
 import { ReactComponent as SearchImg } from '../../assets/img/search.svg';
 import { ReactComponent as ArrowImg } from '../../assets/img/arrow.svg';
 import { ReactComponent as CrossImg } from '../../assets/img/cross.svg';
+import useDebouncedCallback from '../../utils/hooks/useDebounce';
 
 import styles from './search.module.scss';
 
@@ -18,11 +19,15 @@ const Search:FC = () => {
 
     const searchText = useAppSelector((state) => state.home.searchText);
 
+    const getSearch = useDebouncedCallback(() => {
+        dispatch(getSchedulerSearch({ searchText }));
+    }, 600);
+
     useEffect(() => {
         if (searchText.length >= 3) {
-            dispatch(getSchedulerSearch({ searchText }));
+            getSearch();
         }
-    }, [dispatch, searchText]);
+    }, [searchText]);
 
     return (
         <div className={styles.root}>
@@ -60,6 +65,7 @@ const Search:FC = () => {
                             className={styles.crossImageWrapper}
                             onClick={() => {
                                 dispatch(setSearchText(''));
+                                dispatch(clearSearchResult());
                                 setSearchFocus(false);
                             }}
                         >

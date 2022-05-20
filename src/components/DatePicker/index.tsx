@@ -8,7 +8,7 @@ import stylesPicker from 'react-day-picker/dist/style.module.css';
 
 import { setCalendar, setDate } from '../../store/newEntrySlice';
 import { useAppDispatch, useAppSelector } from '../../utils/hooks';
-import { useOnClickOutside } from '../../utils/useOnClickOutside';
+import { useOnClickOutside } from '../../utils/hooks/useOnClickOutside';
 
 import styles from './datePicker.module.scss';
 

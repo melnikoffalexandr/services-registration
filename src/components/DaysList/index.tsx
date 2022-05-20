@@ -9,26 +9,24 @@ import styles from './daysList.module.scss';
 
 const DaysList = () => {
     const dispatch = useAppDispatch();
-    const { data: daysList, loading } = useAppSelector((state) => state.home.entries);
+    const { search, entries, searchText } = useAppSelector((state) => state.home);
 
     useEffect(() => {
         dispatch(getAllEntries());
     }, [dispatch]);
 
-    if (loading) {
+    if (entries.loading || search.loading) {
         return (
             <LoaderImg />
         );
     }
 
     return (
-        <>
-            {daysList.map((list) => (
-                <div key={list.id} className={styles.root}>
-                    {list.entry.map((day) => <DayItem key={day.date} day={day} />)}
-                </div>
-            ))}
-        </>
+        <div>
+            {search.data.length > 0 && searchText.length >= 3
+                ? search.data.map((item) => <div key={item.date} className={styles.root}>{item.postName}</div>)
+                : entries.data.map((list) => <div key={list.id} className={styles.root}>{list.entry.map((day) => <DayItem key={day.date} day={day} />)}</div>)}
+        </div>
     );
 };
 
