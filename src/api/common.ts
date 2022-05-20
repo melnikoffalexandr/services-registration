@@ -12,7 +12,6 @@ export const httpConfig: AxiosRequestConfig = {
     timeout: 6000,
     withCredentials: true,
     headers: {
-        Accept: 'application/json',
         'Content-Type': 'application/json',
     },
 };

@@ -7,9 +7,9 @@ import TextBox from '../../components/TextBox';
 import { useAppDispatch, useAppSelector } from '../../utils/hooks';
 import {
     webAppMainButtonHide,
-    // webAppMainButtonClick,
     webAppMainButtonSetText,
-    webAppMainButtonShow, webAppMainButtonClickEvent,
+    webAppMainButtonShow,
+    webAppMainButtonClick,
 } from '../../utils/telegram';
 import {
     addEntry, setCalendar, setPost, setShowPostInput, setTime,
@@ -39,10 +39,7 @@ const CreateNewEntry = () => {
         if (date !== '' && time !== '') {
             webAppMainButtonSetText('Далее');
             webAppMainButtonShow();
-            webAppMainButtonClickEvent(() => dispatch(addEntry({ date: parsedDate, post })));
-            // webAppMainButtonClick(() => {
-            //     dispatch(addEntry({ date: parsedDate, post }));
-            // });
+            webAppMainButtonClick(() => dispatch(addEntry({ date: parsedDate, post })));
         }
     }, [date, time]);
 

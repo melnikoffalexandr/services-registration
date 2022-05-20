@@ -8,5 +8,3 @@ export const webAppMainButtonClick = (callback: any) => WebApp.MainButton.onClic
 export const webAppMainButtonHide = () => WebApp.MainButton.hide();
 export const webAppMainButtonShowProgress = (leaveActive?: boolean) => WebApp.MainButton.showProgress(leaveActive);
 export const webAppClose = () => WebApp.close();
-
-export const webAppMainButtonClickEvent = (callback: any) => WebApp.onEvent('mainButtonClicked', callback);

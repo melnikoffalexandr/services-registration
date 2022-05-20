@@ -1,8 +1,10 @@
-import React, { FC, useRef, useState } from 'react';
+import React, {
+    FC, useEffect, useRef, useState,
+} from 'react';
 import cls from 'classnames';
 
 import { useAppDispatch, useAppSelector } from '../../utils/hooks';
-import { setSearchText } from '../../store/homeSlice';
+import { getSchedulerSearch, setSearchText } from '../../store/homeSlice';
 import { ReactComponent as SearchImg } from '../../assets/img/search.svg';
 import { ReactComponent as ArrowImg } from '../../assets/img/arrow.svg';
 import { ReactComponent as CrossImg } from '../../assets/img/cross.svg';
@@ -15,6 +17,12 @@ const Search:FC = () => {
     const [searchFocus, setSearchFocus] = useState(false);
 
     const searchText = useAppSelector((state) => state.home.searchText);
+
+    useEffect(() => {
+        if (searchText.length >= 3) {
+            dispatch(getSchedulerSearch({ searchText }));
+        }
+    }, [dispatch, searchText]);
 
     return (
         <div className={styles.root}>
