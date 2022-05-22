@@ -3,7 +3,7 @@ import { Routes, Route } from 'react-router-dom';
 
 import HomePage from '../../pages/HomePage';
 import LayoutPage from '../../pages/LayoutPage';
-import CreateNewEntry from '../../pages/CreateEntry';
+import CreateEntry from '../../pages/CreateEntry';
 import { useAppDispatch } from '../../utils/hooks';
 import { setUser } from '../../store/appSlice';
 
@@ -21,7 +21,7 @@ const App = () => {
             <Routes>
                 <Route path="/" element={<LayoutPage />}>
                     <Route index element={<HomePage />} />
-                    <Route path="/create-new-entry" element={<CreateNewEntry />} />
+                    <Route path="/create-new-entry" element={<CreateEntry />} />
                 </Route>
             </Routes>
         </div>

@@ -2,13 +2,13 @@ import { configureStore } from '@reduxjs/toolkit';
 
 import AppReducer from './appSlice';
 import HomeReducer from './homeSlice';
-import NewEntryReducer from './newEntrySlice';
+import CreateEntryReducer from './createEntrySlice';
 
 const store = configureStore({
     reducer: {
         app: AppReducer,
         home: HomeReducer,
-        newEntry: NewEntryReducer,
+        createEntry: CreateEntryReducer,
     },
 });
 

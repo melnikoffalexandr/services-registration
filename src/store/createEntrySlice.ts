@@ -6,7 +6,7 @@ import { webAppClose, webAppMainButtonShowProgress } from '../utils/telegram';
 import { AppState } from './appSlice';
 
 export const addEntry = createAsyncThunk<string, { date: string, post: string }, { rejectValue: string, state: { app: AppState } }>(
-    'newEntry/addEntry',
+    'createEntry/addEntry',
     async ({ date, post }, { rejectWithValue, getState }) => {
         const state = getState();
         const { userId, chatId } = state.app.user;
@@ -36,7 +36,7 @@ export const addEntry = createAsyncThunk<string, { date: string, post: string },
     },
 );
 
-export type NewEntrySliceState = {
+export type CreateEntrySliceState = {
     calendar: {
         isVisible: boolean,
         position: { top: number, left: number }
@@ -47,7 +47,7 @@ export type NewEntrySliceState = {
     post: string,
 };
 
-const initialState: NewEntrySliceState = {
+const initialState: CreateEntrySliceState = {
     calendar: {
         isVisible: false,
         position: { top: 0, left: 0 },
@@ -58,11 +58,11 @@ const initialState: NewEntrySliceState = {
     post: '',
 };
 
-const NewEntrySlice = createSlice({
-    name: 'newEntry',
+const CreateEntrySlice = createSlice({
+    name: 'createEntry',
     initialState,
     reducers: {
-        setCalendar(state, { payload }: PayloadAction<NewEntrySliceState['calendar']>) {
+        setCalendar(state, { payload }: PayloadAction<CreateEntrySliceState['calendar']>) {
             state.calendar = payload;
         },
         setShowPostInput(state, { payload }: PayloadAction<boolean>) {
@@ -82,6 +82,6 @@ const NewEntrySlice = createSlice({
 
 export const {
     setCalendar, setShowPostInput, setDate, setTime, setPost,
-} = NewEntrySlice.actions;
+} = CreateEntrySlice.actions;
 
-export default NewEntrySlice.reducer;
+export default CreateEntrySlice.reducer;

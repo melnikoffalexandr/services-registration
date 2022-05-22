@@ -1,7 +1,7 @@
 import React, { ChangeEvent, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import cls from 'classnames';
-import dayjs from 'dayjs';
+import { formatISO } from 'date-fns';
 
 import TextBox from '../../components/TextBox';
 import { useAppDispatch, useAppSelector } from '../../utils/hooks';
@@ -13,19 +13,29 @@ import {
 } from '../../utils/telegram';
 import {
     addEntry, setCalendar, setPost, setShowPostInput, setTime,
-} from '../../store/newEntrySlice';
+} from '../../store/createEntrySlice';
 import DatePicker from '../../components/DatePicker';
 import { ReactComponent as CalendarImg } from '../../assets/img/calendar.svg';
 import { ReactComponent as TimeImg } from '../../assets/img/time.svg';
 import Button from '../../components/Button';
 
-import styles from './createNewEntry.module.scss';
+import styles from './createEntry.module.scss';
 
-const CreateNewEntry = () => {
+const getEntryTime = (selectDate: Date | undefined, selectTime: string) => {
+    if (selectDate && selectTime.length > 0) {
+        const formatDate = formatISO(selectDate);
+        return `${formatDate.substring(0, formatDate.length - 14)}${selectTime}:00`;
+    }
+    return '';
+};
+
+const CreateEntry = () => {
     const dispatch = useAppDispatch();
     const {
         isShowPostInput, date, time, post,
-    } = useAppSelector((state) => state.newEntry);
+    } = useAppSelector((state) => state.createEntry);
+
+    const { userId } = useAppSelector((state) => state.app.user);
 
     const [selectedDate, setSelectedDate] = useState<Date>();
 
@@ -33,13 +43,11 @@ const CreateNewEntry = () => {
         '12:30', '13:00', '13:30', '14:00', '14:30', '15:00', '15:30', '16:00', '16:30',
         '17:00', '17:30', '18:00', '18:30', '19:00', '19:30', '20:00'];
 
-    const parsedDate = dayjs(selectedDate).format(`YYYY-MM-DDT${time.length > 0 ? time : '00:00'}:00`);
-
     useEffect(() => {
         if (date !== '' && time !== '') {
             webAppMainButtonSetText('Далее');
             webAppMainButtonShow();
-            webAppMainButtonClick(() => dispatch(addEntry({ date: parsedDate, post })));
+            webAppMainButtonClick(() => dispatch(addEntry({ date: getEntryTime(selectedDate, time), post })));
         }
     }, [date, time]);
 
@@ -47,7 +55,7 @@ const CreateNewEntry = () => {
         <div className={styles.root}>
             <div className={styles.header}>
                 <div className={styles.title}>Создаём новую запись</div>
-                <Link to="/">
+                <Link to={`/?userId=${userId}`}>
                     <div
                         className={styles.cancel}
                         onClick={() => webAppMainButtonHide()}
@@ -117,7 +125,7 @@ const CreateNewEntry = () => {
                 <div
                     className={styles.buttonWrapper}
                     onClick={() => {
-                        dispatch(addEntry({ date: parsedDate, post }));
+                        dispatch(addEntry({ date: getEntryTime(selectedDate, time), post }));
                     }}
                 >
                     <Button text="Временная кнопка, аналог главной кнопки" />
@@ -127,4 +135,4 @@ const CreateNewEntry = () => {
     );
 };
 
-export default CreateNewEntry;
+export default CreateEntry;

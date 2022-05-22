@@ -6,7 +6,7 @@ import { differenceInCalendarDays, format } from 'date-fns';
 import ru from 'date-fns/locale/ru';
 import stylesPicker from 'react-day-picker/dist/style.module.css';
 
-import { setCalendar, setDate } from '../../store/newEntrySlice';
+import { setCalendar, setDate } from '../../store/createEntrySlice';
 import { useAppDispatch, useAppSelector } from '../../utils/hooks';
 import { useOnClickOutside } from '../../utils/hooks/useOnClickOutside';
 
@@ -31,7 +31,7 @@ const DatePicker:FC<Props> = ({ selectedDate, setSelectedDate }) => {
     const calendarRef = useRef<HTMLDivElement>(null);
     const dispatch = useAppDispatch();
 
-    const { calendar } = useAppSelector((state) => state.newEntry);
+    const { calendar } = useAppSelector((state) => state.createEntry);
     const { isVisible, position } = calendar;
 
     const closeCalendar = () => dispatch(setCalendar({ ...calendar, isVisible: false }));
