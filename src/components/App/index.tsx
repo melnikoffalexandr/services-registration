@@ -1,9 +1,9 @@
 import React, { useEffect } from 'react';
 import { Routes, Route } from 'react-router-dom';
 
-import HomePage from '../../pages/homePage';
-import LayoutPage from '../../pages/layoutPage';
-import CreateNewEntry from '../../pages/createNewEntry';
+import HomePage from '../../pages/HomePage';
+import LayoutPage from '../../pages/LayoutPage';
+import CreateNewEntry from '../../pages/CreateEntry';
 import { useAppDispatch } from '../../utils/hooks';
 import { setUser } from '../../store/appSlice';
 

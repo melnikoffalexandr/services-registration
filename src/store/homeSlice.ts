@@ -59,7 +59,7 @@ const initialState: HomeState = {
     },
 };
 
-const homeSlice = createSlice({
+const HomeSlice = createSlice({
     name: 'home',
     initialState,
     reducers: {
@@ -103,6 +103,6 @@ const homeSlice = createSlice({
     },
 });
 
-export const { setSearchText, clearSearchResult } = homeSlice.actions;
+export const { setSearchText, clearSearchResult } = HomeSlice.actions;
 
-export default homeSlice.reducer;
+export default HomeSlice.reducer;

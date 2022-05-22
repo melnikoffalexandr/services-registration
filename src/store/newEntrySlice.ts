@@ -58,7 +58,7 @@ const initialState: NewEntrySliceState = {
     post: '',
 };
 
-const newEntrySlice = createSlice({
+const NewEntrySlice = createSlice({
     name: 'newEntry',
     initialState,
     reducers: {
@@ -82,6 +82,6 @@ const newEntrySlice = createSlice({
 
 export const {
     setCalendar, setShowPostInput, setDate, setTime, setPost,
-} = newEntrySlice.actions;
+} = NewEntrySlice.actions;
 
-export default newEntrySlice.reducer;
+export default NewEntrySlice.reducer;
