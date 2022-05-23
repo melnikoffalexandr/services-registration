@@ -49,7 +49,7 @@ export interface TelegramApi {
             text?: string, color?: string, text_color?: string, is_active?: boolean, is_visible?: boolean
         }) => void;
     };
-    onEvent: (eventType: string, eventHandler: () => void) => void;
+    onEvent: (eventType: string, eventHandler: (event?: any) => void) => void;
     offEvent: (eventType: string, eventHandler: () => void) => void;
     sendData: (data: any) => void;
     ready: () => void;
