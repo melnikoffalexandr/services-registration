@@ -37,7 +37,7 @@ const MainButton:FC<Props> = ({
         createPortal(
             <div
                 className={cls(styles.root, { [styles.rootExpanded]: isExpanded })}
-                style={{ top: !isExpanded ? height : undefined }}
+                style={{ top: !isExpanded ? height : undefined, transition: '1s' }}
                 onClick={onClick}
             >
                 <Button text={text} />

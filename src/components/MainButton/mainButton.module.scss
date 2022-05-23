@@ -14,4 +14,6 @@
 .rootExpanded {
   position: sticky;
   bottom: 0;
+
+  transition: bottom 1s;
 }
