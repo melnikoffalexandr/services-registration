@@ -17,7 +17,6 @@ import {
 import DatePicker from '../../components/DatePicker';
 import { ReactComponent as CalendarImg } from '../../assets/img/calendar.svg';
 import { ReactComponent as TimeImg } from '../../assets/img/time.svg';
-import Button from '../../components/Button';
 
 import styles from './createEntry.module.scss';
 
@@ -50,25 +49,18 @@ const CreateEntry = () => {
             webAppMainButtonClick(() => dispatch(addEntry({ date: getEntryTime(selectedDate, time), point })));
         }
     }, [date, time]);
+    // const { innerHeight } = window;
 
-    const [viewPortHeight, setViewPortHeight] = useState(0);
-    const [innerHeight, setInnerHeight] = useState(0);
+    // const [buttonBottomPosition, setButtonBottomPosition] = useState<number>(0);
 
-    useEffect(() => {
-        setViewPortHeight(document.documentElement.clientHeight);
-        setInnerHeight(window.innerHeight);
-    }, [document.documentElement.clientHeight, window.innerHeight]);
+    /*     useEffect(() => {
+        if (innerHeight !== buttonBottomPosition) {
+            setButtonBottomPosition(innerHeight);
+        }
+    }, [innerHeight, buttonBottomPosition]); */
 
     return (
         <div className={styles.root}>
-            <div>
-                Высота clientHeight:
-                {viewPortHeight}
-            </div>
-            <div>
-                Высота innerHeight:
-                {innerHeight}
-            </div>
             <button type="button" onClick={() => window.location.reload()}>Перезагрузить</button>
             <div className={styles.header}>
                 <div className={styles.title}>Создаём новую запись</div>
@@ -139,14 +131,6 @@ const CreateEntry = () => {
                             <span className={styles.subText}>необязательно</span>
                         </div>
                     )}
-                <div
-                    className={styles.buttonWrapper}
-                    onClick={() => {
-                        dispatch(addEntry({ date: getEntryTime(selectedDate, time), point }));
-                    }}
-                >
-                    <Button text="Временная кнопка, аналог главной кнопки" />
-                </div>
             </div>
         </div>
     );
