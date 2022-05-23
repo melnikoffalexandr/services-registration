@@ -18,9 +18,11 @@ export default function useWindowDimensions() {
 
         window.addEventListener('resize', handleResize);
         window.addEventListener('touchmove', handleResize);
+        window.addEventListener('touchstart', handleResize);
+        window.addEventListener('touchend', handleResize);
         return () => {
             window.removeEventListener('resize', handleResize);
-            window.removeEventListener('touchmove', handleResize);
+            // window.removeEventListener('touchmove', handleResize);
         };
     }, []);
 
