@@ -2,21 +2,21 @@
 
 .root {
   position: absolute;
-  top: calc(var(--tg-viewport-stable-height) - 61);
+  top: calc(var(--tg-viewport-stable-height) - 62px);
 
   width: 100%;
 
   padding: 8px 14px;
 
-  transition: 1s all;
+  transition: top 0.2s;
 
   border-top: 0.5px solid #a3a3a3;
   background-color: #f3f3f3;
 }
 
 .rootExpanded {
-  position: sticky;
+  position: absolute;
   bottom: 0;
 
-  transition: 1s all;
+  transition: 0.2s all;
 }
