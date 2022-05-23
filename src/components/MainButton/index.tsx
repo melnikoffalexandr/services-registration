@@ -25,8 +25,10 @@ const MainButton:FC<Props> = ({
         if (isExpanded) {
             setExpanded(false);
         }
-        setExpanded(true);
-    }, [expanded]);
+        if (!isExpanded) {
+            setExpanded(true);
+        }
+    }, [expanded, webAppIsExpanded()]);
 
     if (!isShow) {
         return null;
