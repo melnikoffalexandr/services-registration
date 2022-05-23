@@ -45,7 +45,7 @@
       }
 
       &::placeholder {
-        color: $text-gray;
+        color: $hint-color;
 
         font-size: 16px;
         line-height: 22px;
@@ -119,7 +119,7 @@
       white-space: nowrap;
       pointer-events: none;
 
-      color: $text-gray;
+      color: $hint-color;
 
       font-size: 12px;
       line-height: 16px;
