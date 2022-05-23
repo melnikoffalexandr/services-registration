@@ -8,7 +8,7 @@ import styles from './navbar.module.scss';
 const Navbar = () => (
     <div className={styles.root}>
         <div className={styles.title}>Записи</div>
-        <Link to="create-new-entry">
+        <Link to="create-entry">
             <Button className={styles.button} text="Записать" withIcon />
         </Link>
     </div>

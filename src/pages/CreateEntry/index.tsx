@@ -32,7 +32,7 @@ const getEntryTime = (selectDate: Date | undefined, selectTime: string) => {
 const CreateEntry = () => {
     const dispatch = useAppDispatch();
     const {
-        isShowPostInput, date, time, post,
+        isShowPostInput, date, time, point,
     } = useAppSelector((state) => state.createEntry);
 
     const { userId } = useAppSelector((state) => state.app.user);
@@ -47,7 +47,7 @@ const CreateEntry = () => {
         if (date !== '' && time !== '') {
             webAppMainButtonSetText('Далее');
             webAppMainButtonShow();
-            webAppMainButtonClick(() => dispatch(addEntry({ date: getEntryTime(selectedDate, time), post })));
+            webAppMainButtonClick(() => dispatch(addEntry({ date: getEntryTime(selectedDate, time), point })));
         }
     }, [date, time]);
 
@@ -110,7 +110,7 @@ const CreateEntry = () => {
                             <div className={styles.title}>Пост</div>
                             <TextBox
                                 className={styles.textBox}
-                                value={post}
+                                value={point}
                                 onChange={(event: ChangeEvent<HTMLInputElement>) => dispatch(setPost(event.target.value))}
                             />
                             <div className={styles.subText}>Например, «№1» или «Сход-развал». Это необязательное поле</div>
@@ -125,7 +125,7 @@ const CreateEntry = () => {
                 <div
                     className={styles.buttonWrapper}
                     onClick={() => {
-                        dispatch(addEntry({ date: getEntryTime(selectedDate, time), post }));
+                        dispatch(addEntry({ date: getEntryTime(selectedDate, time), point }));
                     }}
                 >
                     <Button text="Временная кнопка, аналог главной кнопки" />

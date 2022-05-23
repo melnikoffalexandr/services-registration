@@ -21,7 +21,7 @@ const App = () => {
             <Routes>
                 <Route path="/" element={<LayoutPage />}>
                     <Route index element={<HomePage />} />
-                    <Route path="/create-new-entry" element={<CreateEntry />} />
+                    <Route path="/create-entry" element={<CreateEntry />} />
                 </Route>
             </Routes>
         </div>

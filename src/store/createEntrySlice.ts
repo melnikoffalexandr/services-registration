@@ -5,14 +5,14 @@ import { webAppClose, webAppMainButtonShowProgress } from '../utils/telegram';
 
 import { AppState } from './appSlice';
 
-export const addEntry = createAsyncThunk<string, { date: string, post: string }, { rejectValue: string, state: { app: AppState } }>(
+export const addEntry = createAsyncThunk<string, { date: string, point: string }, { rejectValue: string, state: { app: AppState } }>(
     'createEntry/addEntry',
-    async ({ date, post }, { rejectWithValue, getState }) => {
+    async ({ date, point }, { rejectWithValue, getState }) => {
         const state = getState();
         const { userId, chatId } = state.app.user;
         try {
             webAppMainButtonShowProgress();
-            const { data: recordId, status } = await addEntryRequest({ userId, date, post });
+            const { data: recordId, status } = await addEntryRequest({ userId, date, point });
 
             if (status === 200) {
                 const { status: webBotStatus } = await sendWebBotData({
@@ -44,7 +44,7 @@ export type CreateEntrySliceState = {
     isShowPostInput: boolean,
     date: string,
     time: string,
-    post: string,
+    point: string,
 };
 
 const initialState: CreateEntrySliceState = {
@@ -55,7 +55,7 @@ const initialState: CreateEntrySliceState = {
     isShowPostInput: false,
     date: '',
     time: '',
-    post: '',
+    point: '',
 };
 
 const CreateEntrySlice = createSlice({
@@ -75,7 +75,7 @@ const CreateEntrySlice = createSlice({
             state.time = payload;
         },
         setPost(state, { payload }: PayloadAction<string>) {
-            state.post = payload;
+            state.point = payload;
         },
     },
 });
