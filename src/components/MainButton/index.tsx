@@ -1,9 +1,8 @@
-import React, { FC, useEffect, useState } from 'react';
+import React, { FC } from 'react';
 import cls from 'classnames';
 import { createPortal } from 'react-dom';
 
 import Button from '../Button';
-import { webAppIsExpanded } from '../../utils/telegram';
 
 import styles from './mainButton.module.scss';
 
@@ -16,17 +15,6 @@ interface Props {
 const MainButton:FC<Props> = ({
     isShow = false, text = 'Временная кнопка', className = '',
 }) => {
-    const [height, setHeight] = useState<number>(window.Telegram.WebApp.viewportStableHeight - 61);
-    const isExpanded = webAppIsExpanded();
-
-    useEffect(() => {
-        if (!isExpanded) {
-            window.Telegram.WebApp.onEvent('viewportChanged', () => {
-                setHeight(window.Telegram.WebApp.viewportStableHeight - 61);
-            });
-        }
-    }, [height, isExpanded]);
-
     if (!isShow) {
         return null;
     }
@@ -34,8 +22,7 @@ const MainButton:FC<Props> = ({
     return (
         createPortal(
             <div
-                className={cls(styles.root, className, { [styles.rootExpanded]: isExpanded })}
-                style={{ top: !isExpanded ? height : undefined }}
+                className={cls(styles.root, className)}
             >
                 <Button text={text} />
             </div>, document.body,

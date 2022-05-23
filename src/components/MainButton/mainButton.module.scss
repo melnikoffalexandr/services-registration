@@ -1,7 +1,8 @@
 @import "src/styles/variables";
 
 .root {
-  position: absolute;
+  position: sticky;
+  bottom: 0;
 
   width: 100%;
 
@@ -9,9 +10,4 @@
 
   border-top: 0.5px solid #a3a3a3;
   background-color: #f3f3f3;
-}
-
-.rootExpanded {
-  position: sticky;
-  bottom: 0;
 }
