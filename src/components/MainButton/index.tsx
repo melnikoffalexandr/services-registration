@@ -18,16 +18,15 @@ interface Props {
 const MainButton:FC<Props> = ({
     isShow = false, text = 'Временная кнопка', onClick,
 }) => {
-    const [isExpanded, setIsExpanded] = useState(false);
+    const [isExpanded, setIsExpanded] = useState(webAppIsExpanded());
+
+    console.log(isExpanded);
 
     useEffect(() => {
         window.Telegram.WebApp.onEvent('viewportChanged', () => {
-            if (webAppIsExpanded()) {
-                setIsExpanded(true);
-            }
-            setIsExpanded(false);
+            setIsExpanded(!isExpanded);
         });
-    }, [webAppIsExpanded(), isExpanded]);
+    }, [isExpanded]);
 
     if (!isShow) {
         return null;
