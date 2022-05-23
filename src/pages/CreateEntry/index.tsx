@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import cls from 'classnames';
 import { formatISO } from 'date-fns';
 
-// import TextBox from '../../components/TextBox';
+import TextBox from '../../components/TextBox';
 import { useAppDispatch, useAppSelector } from '../../utils/hooks';
 import {
     webAppMainButtonHide,
@@ -51,8 +51,24 @@ const CreateEntry = () => {
         }
     }, [date, time]);
 
+    const [viewPortHeight, setViewPortHeight] = useState(0);
+    const [innerHeight, setInnerHeight] = useState(0);
+
+    useEffect(() => {
+        setViewPortHeight(document.documentElement.clientHeight);
+        setInnerHeight(window.innerHeight);
+    }, [viewPortHeight, innerHeight]);
+
     return (
         <div className={styles.root}>
+            <div>
+                Высота clientHeight:
+                {viewPortHeight}
+            </div>
+            <div>
+                Высота innerHeight:
+                {innerHeight}
+            </div>
             <div className={styles.header}>
                 <div className={styles.title}>Создаём новую запись</div>
                 <Link to={`/?userId=${userId}`}>
@@ -108,12 +124,11 @@ const CreateEntry = () => {
                     ? (
                         <div className={styles.textBoxWrapper}>
                             <div className={styles.title}>Пост</div>
-
-                            <input value={point} onChange={(event: ChangeEvent<HTMLInputElement>) => dispatch(setPost(event.target.value))} />
-                            {/* <TextBox
+                            <TextBox
                                 className={styles.textBox}
                                 value={point}
-                            /> */}
+                                onChange={(event: ChangeEvent<HTMLInputElement>) => dispatch(setPost(event.target.value))}
+                            />
                             <div className={styles.subText}>Например, «№1» или «Сход-развал». Это необязательное поле</div>
                         </div>
                     )
