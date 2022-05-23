@@ -2,7 +2,7 @@
 
 .root {
   position: absolute;
-  top: calc(var(--tg-viewport-stable-height) - 44px);
+  top: var(--tg-viewport-stable-height);
 
   width: 100%;
 
@@ -15,6 +15,7 @@
 
 .rootExpanded {
   position: sticky;
+  top: unset;
   bottom: 0;
 
   transition: bottom 0.2s;

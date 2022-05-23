@@ -1,4 +1,4 @@
-import React, { FC, useEffect, useState } from 'react';
+import React, { FC } from 'react';
 import { createPortal } from 'react-dom';
 
 import cls from 'classnames';
@@ -18,12 +18,12 @@ interface Props {
 const MainButton:FC<Props> = ({
     isShow = false, onClick,
 }) => {
-    const [expanded, setExpanded] = useState(false);
+    // const [expanded, setExpanded] = useState(false);
 
-    useEffect(() => {
-        if (window.Telegram.WebApp.isExpanded) setExpanded(true);
-        if (!window.Telegram.WebApp.isExpanded) setExpanded(false);
-    }, [window.Telegram.WebApp.isExpanded]);
+    // useEffect(() => {
+    //     if (window.Telegram.WebApp.isExpanded) setExpanded(true);
+    //     if (!window.Telegram.WebApp.isExpanded) setExpanded(false);
+    // }, [window.Telegram.WebApp.isExpanded]);
 
     if (!isShow) {
         return null;
@@ -32,10 +32,10 @@ const MainButton:FC<Props> = ({
     return (
         createPortal(
             <div
-                className={cls(styles.root, { [styles.rootExpanded]: expanded })}
+                className={cls(styles.root, { [styles.rootExpanded]: window.Telegram.WebApp.isExpanded })}
                 onClick={onClick}
             >
-                <Button text={expanded ? 'expanded' : 'not expanded'} className={styles.button} />
+                <Button text={window.Telegram.WebApp.isExpanded ? 'expanded' : 'not expanded'} className={styles.button} />
             </div>, document.body,
         )
     );
