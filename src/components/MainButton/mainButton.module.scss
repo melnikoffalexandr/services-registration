@@ -6,12 +6,7 @@
 
   width: 100%;
 
-  padding: 8px 14px;
-
   transition: top 0.2s;
-
-  border-top: 0.5px solid #a3a3a3;
-  background-color: #f3f3f3;
 }
 
 .rootExpanded {
@@ -19,4 +14,8 @@
   bottom: 0;
 
   transition: bottom 0.2s;
+}
+
+.button {
+  border-radius: 0;
 }

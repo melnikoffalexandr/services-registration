@@ -18,16 +18,7 @@ interface Props {
 const MainButton:FC<Props> = ({
     isShow = false, text = 'Временная кнопка', onClick,
 }) => {
-    // const [height, setHeight] = useState<number>(window.Telegram.WebApp.viewportStableHeight - 61);
     const isExpanded = webAppIsExpanded();
-
-    /* useEffect(() => {
-        if (!isExpanded) {
-            window.Telegram.WebApp.onEvent('viewportChanged', () => {
-                setHeight(window.Telegram.WebApp.viewportStableHeight - 61);
-            });
-        }
-    }, [height, isExpanded]); */
 
     if (!isShow) {
         return null;
@@ -37,10 +28,9 @@ const MainButton:FC<Props> = ({
         createPortal(
             <div
                 className={cls(styles.root, { [styles.rootExpanded]: isExpanded })}
-                // style={{ top: !isExpanded ? height : undefined }}
                 onClick={onClick}
             >
-                <Button text={text} />
+                <Button text={text} className={styles.button} />
             </div>, document.body,
         )
     );
