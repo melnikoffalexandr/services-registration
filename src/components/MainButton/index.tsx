@@ -10,10 +10,11 @@ interface Props {
     isShow: boolean;
     text: string;
     className?: string;
+    onClick: (event: any) => void;
 }
 
 const MainButton:FC<Props> = ({
-    isShow = false, text = 'Временная кнопка', className = '',
+    isShow = false, text = 'Временная кнопка', className = '', onClick,
 }) => {
     if (!isShow) {
         return null;
@@ -23,6 +24,7 @@ const MainButton:FC<Props> = ({
         createPortal(
             <div
                 className={cls(styles.root, className)}
+                onClick={onClick}
             >
                 <Button text={text} />
             </div>, document.body,
