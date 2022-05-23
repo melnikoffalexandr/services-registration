@@ -5,7 +5,7 @@ import cls from 'classnames';
 
 import Button from '../Button';
 
-// import { webAppIsExpanded } from '../../utils/telegram';
+import { webAppIsExpanded } from '../../utils/telegram';
 
 import styles from './mainButton.module.scss';
 
@@ -19,7 +19,7 @@ const MainButton:FC<Props> = ({
     isShow = false, text = 'Временная кнопка', onClick,
 }) => {
     // const [height, setHeight] = useState<number>(window.Telegram.WebApp.viewportStableHeight - 61);
-    const isExpanded = true;
+    const isExpanded = webAppIsExpanded();
 
     /* useEffect(() => {
         if (!isExpanded) {
