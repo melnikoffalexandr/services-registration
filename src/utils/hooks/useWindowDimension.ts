@@ -15,10 +15,10 @@ export default function useWindowDimensions() {
             setWindowDimensions(getWindowDimensions());
         }
 
-        window.addEventListener('resize', handleResize);
+        window.addEventListener('re', handleResize);
+        window.addEventListener('touchmove', (e) => console.log(e));
         return () => {
             window.removeEventListener('resize', handleResize);
-            // window.removeEventListener('touchmove', handleResize);
         };
     }, []);
 
