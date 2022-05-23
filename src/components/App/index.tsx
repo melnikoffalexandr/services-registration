@@ -7,11 +7,7 @@ import CreateEntry from '../../pages/CreateEntry';
 import { useAppDispatch } from '../../utils/hooks';
 import { setUser } from '../../store/appSlice';
 
-import { webAppTheme } from '../../utils/telegram';
-
 import styles from './app.module.scss';
-
-const { colorScheme } = webAppTheme();
 
 const App = () => {
     const dispatch = useAppDispatch();
@@ -21,7 +17,7 @@ const App = () => {
     }, []);
 
     return (
-        <div className={styles.root} style={{ background: colorScheme }}>
+        <div className={styles.root}>
             <Routes>
                 <Route path="/" element={<LayoutPage />}>
                     <Route index element={<HomePage />} />
