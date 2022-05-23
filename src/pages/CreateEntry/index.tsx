@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import cls from 'classnames';
 import { formatISO } from 'date-fns';
 
-import TextBox from '../../components/TextBox';
+// import TextBox from '../../components/TextBox';
 import { useAppDispatch, useAppSelector } from '../../utils/hooks';
 import {
     webAppMainButtonHide,
@@ -108,11 +108,12 @@ const CreateEntry = () => {
                     ? (
                         <div className={styles.textBoxWrapper}>
                             <div className={styles.title}>Пост</div>
-                            <TextBox
+
+                            <input value={point} onChange={(event: ChangeEvent<HTMLInputElement>) => dispatch(setPost(event.target.value))} />
+                            {/* <TextBox
                                 className={styles.textBox}
                                 value={point}
-                                onChange={(event: ChangeEvent<HTMLInputElement>) => dispatch(setPost(event.target.value))}
-                            />
+                            /> */}
                             <div className={styles.subText}>Например, «№1» или «Сход-развал». Это необязательное поле</div>
                         </div>
                     )
