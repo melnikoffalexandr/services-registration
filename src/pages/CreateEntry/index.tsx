@@ -69,6 +69,7 @@ const CreateEntry = () => {
                 Высота innerHeight:
                 {innerHeight}
             </div>
+            <button type="button" onClick={() => window.location.reload()}>Перезагрузить</button>
             <div className={styles.header}>
                 <div className={styles.title}>Создаём новую запись</div>
                 <Link to={`/?userId=${userId}`}>
