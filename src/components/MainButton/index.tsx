@@ -22,15 +22,10 @@ const MainButton:FC<Props> = ({
 
     useEffect(() => {
         const isExpanded = webAppIsExpanded();
-        window.Telegram.WebApp.onEvent('viewportChanged', () => {
-            if (isExpanded) {
-                setExpanded(false);
-            }
-            if (!isExpanded) {
-                setExpanded(true);
-            }
-        });
-    }, [expanded, webAppIsExpanded()]);
+        if (!isExpanded) {
+            setExpanded(isExpanded);
+        }
+    }, [expanded]);
 
     if (!isShow) {
         return null;
@@ -42,6 +37,7 @@ const MainButton:FC<Props> = ({
                 className={cls(styles.root, { [styles.rootExpanded]: expanded })}
                 onClick={onClick}
             >
+                <div>{expanded}</div>
                 <Button text={text} className={styles.button} />
             </div>, document.body,
         )
