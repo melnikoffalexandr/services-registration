@@ -1,4 +1,4 @@
-import React, { ChangeEvent, useEffect, useState } from 'react';
+import React, { ChangeEvent, useState } from 'react';
 import { Link } from 'react-router-dom';
 import cls from 'classnames';
 import { formatISO } from 'date-fns';
@@ -6,18 +6,11 @@ import { formatISO } from 'date-fns';
 import TextBox from '../../components/TextBox';
 import { useAppDispatch, useAppSelector } from '../../utils/hooks';
 import {
-    webAppMainButtonHide,
-    webAppMainButtonSetText,
-    webAppMainButtonShow,
-    webAppMainButtonClick,
-} from '../../utils/telegram';
-import {
     addEntry, setCalendar, setPost, setShowPostInput, setTime,
 } from '../../store/createEntrySlice';
 import DatePicker from '../../components/DatePicker';
 import { ReactComponent as CalendarImg } from '../../assets/img/calendar.svg';
 import { ReactComponent as TimeImg } from '../../assets/img/time.svg';
-
 import MainButton from '../../components/MainButton';
 
 import styles from './createEntry.module.scss';
@@ -44,25 +37,13 @@ const CreateEntry = () => {
         '12:30', '13:00', '13:30', '14:00', '14:30', '15:00', '15:30', '16:00', '16:30',
         '17:00', '17:30', '18:00', '18:30', '19:00', '19:30', '20:00'];
 
-    console.log(date, time);
-
-    useEffect(() => {
-        if (date !== '' && time !== '') {
-            webAppMainButtonSetText('Далее');
-            webAppMainButtonShow();
-            webAppMainButtonClick(() => dispatch(addEntry({ date: getEntryTime(selectedDate, time), point })));
-        }
-    }, [date, time]);
-
     return (
         <div className={styles.root}>
-            <button type="button" onClick={() => window.location.reload()}>Перезагрузить</button>
             <div className={styles.header}>
                 <div className={styles.title}>Создаём новую запись</div>
                 <Link to={`/?userId=${userId}`}>
                     <div
                         className={styles.cancel}
-                        onClick={() => webAppMainButtonHide()}
                     >
                         Не создавать
                     </div>
