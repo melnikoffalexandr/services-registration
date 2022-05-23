@@ -10,3 +10,8 @@ export const webAppMainButtonShowProgress = (leaveActive?: boolean) => WebApp.Ma
 export const webAppClose = () => WebApp.close();
 export const webAppIsExpanded = () => WebApp.isExpanded;
 export const webAppExpand = () => WebApp.expand();
+export const webAppTheme = () => ({
+    colorScheme: WebApp.colorScheme,
+    textColor: WebApp.themeParams.text_color,
+    backgroundColor: WebApp.themeParams.bg_color,
+});
