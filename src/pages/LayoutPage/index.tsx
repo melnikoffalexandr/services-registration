@@ -8,7 +8,7 @@ import styles from './layoutPage.module.scss';
 // const { backgroundColor, textColor } = webAppTheme();
 
 const LayoutPage = () => (
-    <div className={styles.root} style={{ background: '#420759', color: '#fff' }}>
+    <div className={styles.root}>
         <Outlet />
     </div>
 );
