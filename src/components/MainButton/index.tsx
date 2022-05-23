@@ -19,7 +19,7 @@ const MainButton:FC<Props> = ({
     isShow = false, text = 'Временная кнопка', onClick,
 }) => {
     // const [height, setHeight] = useState<number>(window.Telegram.WebApp.viewportStableHeight - 61);
-    const isExpanded = false;
+    const isExpanded = true;
 
     /* useEffect(() => {
         if (!isExpanded) {
