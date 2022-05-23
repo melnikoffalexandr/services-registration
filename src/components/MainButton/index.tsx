@@ -20,10 +20,12 @@ const MainButton:FC<Props> = ({
     const isExpanded = webAppIsExpanded();
 
     useEffect(() => {
-        window.Telegram.WebApp.onEvent('viewportChanged', () => {
-            setHeight(window.Telegram.WebApp.viewportStableHeight - 61);
-        });
-    }, [height]);
+        if (!isExpanded) {
+            window.Telegram.WebApp.onEvent('viewportChanged', () => {
+                setHeight(window.Telegram.WebApp.viewportStableHeight - 61);
+            });
+        }
+    }, [height, isExpanded]);
 
     if (!isShow) {
         return null;
