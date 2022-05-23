@@ -5,7 +5,7 @@ import cls from 'classnames';
 
 import Button from '../Button';
 
-import { webAppIsExpanded } from '../../utils/telegram';
+// import { webAppIsExpanded } from '../../utils/telegram';
 
 import styles from './mainButton.module.scss';
 
@@ -18,14 +18,13 @@ interface Props {
 const MainButton:FC<Props> = ({
     isShow = false, onClick,
 }) => {
-    const [expanded, setExpanded] = useState(webAppIsExpanded());
+    const [expanded, setExpanded] = useState(window.Telegram.WebApp.isExpanded);
 
     useEffect(() => {
-        const isExpanded = webAppIsExpanded();
-        if (!isExpanded) {
-            setExpanded(isExpanded);
+        if (!window.Telegram.WebApp.isExpanded) {
+            setExpanded(window.Telegram.WebApp.isExpanded);
         }
-    }, [expanded]);
+    }, [expanded, window.Telegram.WebApp.isExpanded]);
 
     if (!isShow) {
         return null;
