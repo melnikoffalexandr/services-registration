@@ -14,7 +14,7 @@ import DatePicker from '../../components/DatePicker';
 import { ReactComponent as CalendarImg } from '../../assets/img/calendar.svg';
 import { ReactComponent as TimeImg } from '../../assets/img/time.svg';
 
-import MainButton from '../../components/MainButton';
+// import MainButton from '../../components/MainButton';
 
 import styles from './createEntry.module.scss';
 
@@ -112,7 +112,7 @@ const CreateEntry = () => {
                         </div>
                     )}
             </div>
-            <MainButton isShow text="Тест" />
+            {/* <MainButton isShow text="Тест" /> */}
         </div>
     );
 };
