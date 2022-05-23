@@ -21,16 +21,9 @@ const MainButton:FC<Props> = ({
     const [expanded, setExpanded] = useState(false);
 
     useEffect(() => {
-        if (!expanded) {
-            window.Telegram.WebApp.onEvent('viewportChanged', () => setExpanded(true));
-        }
-        if (expanded) {
-            window.Telegram.WebApp.onEvent('viewportChanged', () => setExpanded(false));
-        }
-        // if (!window.Telegram.WebApp.onEvent) {
-        //     setExpanded(window.Telegram.WebApp.isExpanded);
-        // }
-    }, [expanded, window.Telegram.WebApp.isExpanded]);
+        if (window.Telegram.WebApp.isExpanded) setExpanded(true);
+        if (!window.Telegram.WebApp.isExpanded) setExpanded(false);
+    }, [window.Telegram.WebApp.isExpanded]);
 
     if (!isShow) {
         return null;
