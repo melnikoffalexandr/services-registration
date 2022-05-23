@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, { FC, useEffect, useState } from 'react';
 import { createPortal } from 'react-dom';
 
 import cls from 'classnames';
@@ -18,7 +18,16 @@ interface Props {
 const MainButton:FC<Props> = ({
     isShow = false, text = 'Временная кнопка', onClick,
 }) => {
-    const isExpanded = webAppIsExpanded();
+    const [isExpanded, setIsExpanded] = useState(false);
+
+    useEffect(() => {
+        window.Telegram.WebApp.onEvent('viewportChanged', () => {
+            if (webAppIsExpanded()) {
+                setIsExpanded(true);
+            }
+            setIsExpanded(false);
+        });
+    }, [webAppIsExpanded(), isExpanded]);
 
     if (!isShow) {
         return null;
