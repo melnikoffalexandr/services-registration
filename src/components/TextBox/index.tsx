@@ -1,10 +1,11 @@
 import React, {
     ChangeEvent,
-    FC, useRef, useState,
+    FC, useRef,
+    // useState,
 } from 'react';
 import cls from 'classnames';
 
-import { useOnClickOutside } from '../../utils/hooks/useOnClickOutside';
+// import { useOnClickOutside } from '../../utils/hooks/useOnClickOutside';
 
 import styles from './textBox.module.scss';
 
@@ -17,22 +18,22 @@ interface Props {
 }
 
 const TextBox:FC<Props> = ({
-    className = '', type = 'text', value, placeholder, onChange,
+    className = '', type, value, placeholder, onChange,
 }) => {
     const inputRef = useRef<HTMLInputElement>(null);
 
-    const [isFocused, setIsFocused] = useState(false);
+    // const [isFocused, setIsFocused] = useState(false);
 
-    useOnClickOutside(isFocused, inputRef, () => setIsFocused(false));
+    // useOnClickOutside(isFocused, inputRef, () => setIsFocused(false));
 
     return (
-        <div className={cls(styles.root, className, { [styles.rootFocused]: isFocused })}>
+        <div className={cls(styles.root, className)}>
             <input
                 ref={inputRef}
                 type={type}
                 value={value}
                 placeholder={placeholder}
-                onFocus={() => setIsFocused(true)}
+                // onFocus={() => setIsFocused(true)}
                 onChange={onChange}
             />
         </div>

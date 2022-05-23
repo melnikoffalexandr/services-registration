@@ -1,7 +1,7 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 import { addEntryRequest, sendWebBotData } from '../api';
-import { webAppMainButtonShowProgress } from '../utils/telegram';
+import { webAppClose, webAppMainButtonShowProgress } from '../utils/telegram';
 
 import { AppState } from './appSlice';
 
@@ -12,10 +12,10 @@ export const addEntry = createAsyncThunk<string, { date: string, point: string }
         const { userId, chatId } = state.app.user;
         try {
             webAppMainButtonShowProgress();
-            const { data: recordId, status } = await addEntryRequest({ userId, point, date });
+            const { data: recordId, status } = await addEntryRequest({ userId, date, point });
 
             if (status === 200) {
-                await sendWebBotData({
+                const { status: webBotStatus } = await sendWebBotData({
                     chatId,
                     userId,
                     request: 'UserSetSchedulerRecord',
@@ -24,9 +24,9 @@ export const addEntry = createAsyncThunk<string, { date: string, point: string }
                     },
                 });
 
-                // if (webBotStatus === 200) {
-                //     webAppClose();
-                // }
+                if (webBotStatus === 200) {
+                    webAppClose();
+                }
             }
 
             return recordId;
