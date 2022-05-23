@@ -18,12 +18,18 @@ interface Props {
 const MainButton:FC<Props> = ({
     isShow = false, onClick,
 }) => {
-    const [expanded, setExpanded] = useState(window.Telegram.WebApp.isExpanded);
+    const [expanded, setExpanded] = useState(false);
 
     useEffect(() => {
-        if (!window.Telegram.WebApp.isExpanded) {
-            setExpanded(window.Telegram.WebApp.isExpanded);
+        if (!expanded) {
+            window.Telegram.WebApp.onEvent('viewportChanged', () => setExpanded(true));
         }
+        if (expanded) {
+            window.Telegram.WebApp.onEvent('viewportChanged', () => setExpanded(false));
+        }
+        // if (!window.Telegram.WebApp.onEvent) {
+        //     setExpanded(window.Telegram.WebApp.isExpanded);
+        // }
     }, [expanded, window.Telegram.WebApp.isExpanded]);
 
     if (!isShow) {
