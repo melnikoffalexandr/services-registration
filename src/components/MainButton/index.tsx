@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, { FC, useEffect, useState } from 'react';
 import { createPortal } from 'react-dom';
 
 import cls from 'classnames';
@@ -18,7 +18,14 @@ interface Props {
 const MainButton:FC<Props> = ({
     isShow = false, text = 'Временная кнопка', onClick,
 }) => {
-    const isExpanded = webAppIsExpanded();
+    const [exp, setExp] = useState(webAppIsExpanded());
+
+    useEffect(() => {
+        const isExpanded = webAppIsExpanded();
+        if (!isExpanded) {
+            setExp(isExpanded);
+        }
+    }, [exp]);
 
     if (!isShow) {
         return null;
@@ -27,7 +34,7 @@ const MainButton:FC<Props> = ({
     return (
         createPortal(
             <div
-                className={cls(styles.root, { [styles.rootExpanded]: isExpanded })}
+                className={cls(styles.root, { [styles.rootExpanded]: exp })}
                 onClick={onClick}
             >
                 <Button text={text} className={styles.button} />
