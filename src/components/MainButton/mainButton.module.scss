@@ -1,0 +1,11 @@
+@import "src/styles/variables";
+
+.root {
+  position: absolute;
+
+  width: 100%;
+
+  .rootExpanded {
+    bottom: -40px;
+  }
+}
