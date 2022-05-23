@@ -23,7 +23,7 @@
     .weekDay {
       margin-right: 10px;
 
-      color: $text-gray;
+      color: $hint-color;
 
       font-size: 14px;
       line-height: 18px;
@@ -32,6 +32,8 @@
     .date {
       margin-right: 10px;
 
+      color: $text-color;
+
       font-size: 16px;
       line-height: 22px;
     }
@@ -39,7 +41,7 @@
     .todayMark {
       padding: 2px 6px;
 
-      color: $red;
+      color: $text-color;
       background-color: $light-red;
 
       font-size: 12px;
@@ -48,7 +50,7 @@
   }
 
   .count {
-    color: $text-gray;
+    color: $hint-color;
 
     font-size: 12px;
     line-height: 16px;
