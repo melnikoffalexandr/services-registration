@@ -1,9 +1,8 @@
 import { useState, useEffect } from 'react';
 
 function getWindowDimensions() {
-    const { innerWidth: width, innerHeight: height } = window;
+    const height = document.documentElement.clientHeight;
     return {
-        width,
         height,
     };
 }
@@ -17,9 +16,6 @@ export default function useWindowDimensions() {
         }
 
         window.addEventListener('resize', handleResize);
-        window.addEventListener('touchmove', handleResize);
-        window.addEventListener('touchstart', handleResize);
-        window.addEventListener('touchend', handleResize);
         return () => {
             window.removeEventListener('resize', handleResize);
             // window.removeEventListener('touchmove', handleResize);

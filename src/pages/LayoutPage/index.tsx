@@ -11,12 +11,10 @@ import styles from './layoutPage.module.scss';
 const LayoutPage = () => {
     const { height } = useWindowDimensions();
 
-    const percent = (innerHeight: number): number => {
-        console.log('test');
-        return (innerHeight / 100) * 60 - 48;
-    };
+    const percent = (innerHeight: number): number => (innerHeight / 100) * 60 - 48;
     return (
         <div className={styles.root}>
+            <div>{height}</div>
             <Outlet />
             <div
                 className={styles.buttonWrapper}
