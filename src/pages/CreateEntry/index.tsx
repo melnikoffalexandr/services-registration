@@ -57,7 +57,7 @@ const CreateEntry = () => {
     useEffect(() => {
         setViewPortHeight(document.documentElement.clientHeight);
         setInnerHeight(window.innerHeight);
-    }, [viewPortHeight, innerHeight]);
+    }, [document.documentElement.clientHeight, window.innerHeight]);
 
     return (
         <div className={styles.root}>
