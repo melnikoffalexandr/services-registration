@@ -16,7 +16,7 @@ interface Props {
 }
 
 const MainButton:FC<Props> = ({
-    isShow = false, text = 'Временная кнопка', onClick,
+    isShow = false, onClick,
 }) => {
     const [expanded, setExpanded] = useState(webAppIsExpanded());
 
@@ -37,8 +37,7 @@ const MainButton:FC<Props> = ({
                 className={cls(styles.root, { [styles.rootExpanded]: expanded })}
                 onClick={onClick}
             >
-                <div>{expanded}</div>
-                <Button text={text} className={styles.button} />
+                <Button text={expanded ? 'expanded' : 'not expanded'} className={styles.button} />
             </div>, document.body,
         )
     );
