@@ -2,11 +2,15 @@
 
 .root {
   position: absolute;
-  top: calc(var(--tg-viewport-stable-height) - 62px);
+  top: calc(var(--tg-viewport-stable-height) - 48px);
 
   width: 100%;
 
   transition: top 0.2s;
+
+  .button {
+    border-radius: 0;
+  }
 }
 
 .rootExpanded {
@@ -14,8 +18,4 @@
   bottom: 0;
 
   transition: bottom 0.2s;
-}
-
-.button {
-  border-radius: 0;
 }
