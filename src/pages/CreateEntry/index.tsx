@@ -112,7 +112,7 @@ const CreateEntry = () => {
                         </div>
                     )}
             </div>
-            <MainButton isShow={date !== '' && time !== ''} text="Тест" />
+            <MainButton isShow text="Тест" />
         </div>
     );
 };

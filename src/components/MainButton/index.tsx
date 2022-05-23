@@ -16,12 +16,12 @@ interface Props {
 const MainButton:FC<Props> = ({
     isShow = false, text = 'Временная кнопка', className = '',
 }) => {
-    const [height, setHeight] = useState<number>(window.Telegram.WebApp.viewportStableHeight - 44);
+    const [height, setHeight] = useState<number>(window.Telegram.WebApp.viewportStableHeight - 61);
     const isExpanded = false;
 
     useEffect(() => {
         window.Telegram.WebApp.onEvent('viewportChanged', () => {
-            setHeight(window.Telegram.WebApp.viewportStableHeight - 44);
+            setHeight(window.Telegram.WebApp.viewportStableHeight - 61);
         });
     }, [height]);
 
