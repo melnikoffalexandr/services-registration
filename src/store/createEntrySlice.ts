@@ -12,7 +12,7 @@ export const addEntry = createAsyncThunk<string, { date: string, point: string }
         const { userId, chatId } = state.app.user;
         try {
             webAppMainButtonShowProgress();
-            const { data: recordId, status } = await addEntryRequest({ userId, date, point });
+            const { data: recordId, status } = await addEntryRequest({ userId, point, date });
 
             if (status === 200) {
                 const { status: webBotStatus } = await sendWebBotData({
