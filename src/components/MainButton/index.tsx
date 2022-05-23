@@ -18,14 +18,15 @@ interface Props {
 const MainButton:FC<Props> = ({
     isShow = false, text = 'Временная кнопка', onClick,
 }) => {
-    const [exp, setExp] = useState(webAppIsExpanded());
+    const [expanded, setExpanded] = useState(webAppIsExpanded());
 
     useEffect(() => {
         const isExpanded = webAppIsExpanded();
-        if (!isExpanded) {
-            setExp(isExpanded);
+        if (isExpanded) {
+            setExpanded(false);
         }
-    }, [exp]);
+        setExpanded(true);
+    }, [expanded]);
 
     if (!isShow) {
         return null;
@@ -34,7 +35,7 @@ const MainButton:FC<Props> = ({
     return (
         createPortal(
             <div
-                className={cls(styles.root, { [styles.rootExpanded]: exp })}
+                className={cls(styles.root, { [styles.rootExpanded]: expanded })}
                 onClick={onClick}
             >
                 <Button text={text} className={styles.button} />
