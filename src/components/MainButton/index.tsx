@@ -24,7 +24,7 @@ const MainButton:FC<Props> = ({
         window.Telegram.WebApp.onEvent('viewportChanged', () => {
             setIsExpanded(!isExpanded);
         });
-    }, []);
+    }, [webAppIsExpanded()]);
 
     if (!isShow) {
         return null;
