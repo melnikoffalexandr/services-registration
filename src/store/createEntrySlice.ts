@@ -1,7 +1,7 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 import { addEntryRequest, sendWebBotData } from '../api';
-import { webAppClose, webAppMainButtonShowProgress } from '../utils/telegram';
+import { webAppClose, webAppExpand, webAppMainButtonShowProgress } from '../utils/telegram';
 
 import { AppState } from './appSlice';
 
@@ -64,6 +64,7 @@ const CreateEntrySlice = createSlice({
     reducers: {
         setCalendar(state, { payload }: PayloadAction<CreateEntrySliceState['calendar']>) {
             state.calendar = payload;
+            if (payload.isVisible) webAppExpand();
         },
         setShowPostInput(state, { payload }: PayloadAction<boolean>) {
             state.isShowPostInput = payload;
