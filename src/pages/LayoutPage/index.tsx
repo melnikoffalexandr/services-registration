@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { Outlet } from 'react-router-dom';
 import cls from 'classnames';
 
+import { createPortal } from 'react-dom';
+
 import Button from '../../components/Button';
 import { webAppIsExpanded } from '../../utils/telegram';
 
@@ -20,12 +22,13 @@ const LayoutPage = () => {
     return (
         <div className={styles.root}>
             <Outlet />
-            <div
-                className={cls(styles.buttonWrapper, { [styles.expanded]: isExpanded })}
-                style={{ top: !isExpanded ? height : undefined }}
-            >
-                <Button text="Временная кнопка, аналог главной кнопки" />
-            </div>
+            {createPortal(
+                <div
+                    className={cls(styles.buttonWrapper, { [styles.expanded]: isExpanded })}
+                    style={{ top: !isExpanded ? height : undefined }}
+                >
+                    <Button text="Временная кнопка, аналог главной кнопки" />
+                </div>, document.body)}
         </div>
     );
 };
