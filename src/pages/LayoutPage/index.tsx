@@ -4,8 +4,6 @@ import { Outlet } from 'react-router-dom';
 
 import Button from '../../components/Button';
 
-// import { webAppViewportStableHeight } from '../../utils/telegram';
-
 import styles from './layoutPage.module.scss';
 
 const LayoutPage = () => {
@@ -16,9 +14,9 @@ const LayoutPage = () => {
             setHeight(window.Telegram.WebApp.viewportStableHeight - 90);
         });
     }, [height]);
+
     return (
         <div className={styles.root}>
-            <div>{height}</div>
             <Outlet />
             <div
                 className={styles.buttonWrapper}

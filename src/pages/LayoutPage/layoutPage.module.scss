@@ -6,12 +6,12 @@
   padding: 16px;
 
   background-color: $white;
+
+  .buttonWrapper {
+    position: absolute;
+
+    width: 98.1%;
+  }
 }
 
-.buttonWrapper {
-  position: absolute;
 
-  width: 100%;
-
-  padding-right: 32px;
-}
