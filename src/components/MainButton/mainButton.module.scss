@@ -14,9 +14,9 @@
 }
 
 .rootExpanded {
-  position: sticky;
+  position: absolute;
   top: unset;
   bottom: 0;
 
-  transition: bottom 0.2s;
+  transition: 0.2s;
 }
