@@ -24,7 +24,7 @@ const MainButton:FC<Props> = ({
                 setExpanded(true);
             }
         });
-    }, []);
+    }, [expanded]);
 
     if (!isShow) {
         return null;
