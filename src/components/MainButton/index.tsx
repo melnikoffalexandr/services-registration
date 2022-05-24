@@ -5,6 +5,8 @@ import cls from 'classnames';
 
 import Button from '../Button';
 
+import { webAppIsExpanded } from '../../utils/telegram';
+
 import styles from './mainButton.module.scss';
 
 interface Props {
@@ -16,15 +18,14 @@ interface Props {
 const MainButton:FC<Props> = ({
     isShow = false, onClick,
 }) => {
-    const [expanded, setExpanded] = useState(false);
+    const [exp, setExp] = useState(window.Telegram.WebApp.isExpanded);
 
     useEffect(() => {
-        window.Telegram.WebApp.onEvent('viewportChanged', ({ isStateStable }) => {
-            if (isStateStable) {
-                setExpanded(true);
-            }
-        });
-    }, [expanded]);
+        const isExpanded = webAppIsExpanded();
+        if (!window.Telegram.WebApp.isExpanded) {
+            setExp(isExpanded);
+        }
+    }, [window.Telegram.WebApp.isExpanded]);
 
     if (!isShow) {
         return null;
@@ -33,10 +34,10 @@ const MainButton:FC<Props> = ({
     return (
         createPortal(
             <div
-                className={cls(styles.root, { [styles.rootExpanded]: expanded })}
+                className={cls(styles.root, { [styles.rootExpanded]: exp })}
                 onClick={onClick}
             >
-                <Button text={expanded ? 'expanded' : 'not expanded'} className={styles.button} />
+                <Button text="Test" className={styles.button} />
             </div>, document.body,
         )
     );
