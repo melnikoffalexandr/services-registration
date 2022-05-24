@@ -16,8 +16,7 @@ interface Props {
 const MainButton:FC<Props> = ({
     isShow = false, onClick,
 }) => {
-    const tg = window.Telegram.WebApp;
-    const [expanded, setExpanded] = useState(tg.isExpanded);
+    const [expanded, setExpanded] = useState(false);
 
     useEffect(() => {
         window.Telegram.WebApp.onEvent('viewportChanged', ({ isStateStable }) => {

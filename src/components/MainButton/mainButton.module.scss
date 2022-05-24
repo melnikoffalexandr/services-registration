@@ -2,7 +2,7 @@
 
 .root {
   position: absolute;
-  top: var(--tg-viewport-stable-height);
+  top: calc(var(--tg-viewport-stable-height) - 44px);
 
   width: 100%;
 
