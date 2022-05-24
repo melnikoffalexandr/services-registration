@@ -1,11 +1,11 @@
-import React, { FC } from 'react';
+import React, { FC, useEffect, useState } from 'react';
 import { createPortal } from 'react-dom';
 
 import cls from 'classnames';
 
 import Button from '../Button';
 
-// import { webAppIsExpanded } from '../../utils/telegram';
+import { webAppIsExpanded } from '../../utils/telegram';
 
 import styles from './mainButton.module.scss';
 
@@ -18,12 +18,16 @@ interface Props {
 const MainButton:FC<Props> = ({
     isShow = false, onClick,
 }) => {
-    // const [expanded, setExpanded] = useState(false);
+    const { viewportStableHeight } = window.Telegram.WebApp;
+    const [height, setHeight] = useState(viewportStableHeight);
 
-    // useEffect(() => {
-    //     if (window.Telegram.WebApp.isExpanded) setExpanded(true);
-    //     if (!window.Telegram.WebApp.isExpanded) setExpanded(false);
-    // }, [window.Telegram.WebApp.isExpanded]);
+    useEffect(() => {
+        window.Telegram.WebApp.onEvent('viewportChanged', ({ isStateStable }) => {
+            if (isStateStable) {
+                setHeight(viewportStableHeight);
+            }
+        });
+    }, [webAppIsExpanded()]);
 
     if (!isShow) {
         return null;
@@ -32,10 +36,11 @@ const MainButton:FC<Props> = ({
     return (
         createPortal(
             <div
-                className={cls(styles.root, { [styles.rootExpanded]: window.Telegram.WebApp.isExpanded })}
+                className={cls(styles.root)}
                 onClick={onClick}
+                style={{ position: 'sticky', top: height, transition: '0.5' }}
             >
-                <Button text={window.Telegram.WebApp.isExpanded ? 'expanded' : 'not expanded'} className={styles.button} />
+                <Button text="Test" className={styles.button} />
             </div>, document.body,
         )
     );
