@@ -14,12 +14,6 @@
 
   span {
     display: inherit;
-
-    svg {
-      path {
-        fill: $text-color;
-      }
-    }
   }
 
   .icon {
@@ -27,7 +21,7 @@
   }
 
   .text {
-    color: $text-color;
+    color: $white;
 
     font-size: 16px;
     font-weight: bold;
