@@ -8,11 +8,13 @@ export type EntriesList = {
     entry: Entry[]
 }[];
 
-export type SchedulerSearchList = {
+export interface Search {
     additionalInfo: null;
     date: string;
     client: string;
     works: string[];
     postId: string;
     postName: string;
-}[];
+}
+
+export type SearchList = Search[];

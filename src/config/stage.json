@@ -1,0 +1,4 @@
+{
+  "BASE_URL": "https://telegram-crm.rossko.dev",
+  "METRICS_API": "https://testnsk-analyticdatasaver.rossko.dev/api/AnalyticData/events"
+}

@@ -20,7 +20,7 @@ const DayItem: FC<Props> = ({ day }) => {
                     <span className={styles.weekDay}>{format(new Date(day.date), 'cccccc', { locale: ru })}</span>
                     <span className={styles.date}>{format(new Date(day.date), 'dd MMMM', { locale: ru })}</span>
                 </div>
-                {isCurrentToday && <div className={styles.todayMark}>это сегодня</div>}
+                {isCurrentToday && <div className={styles.badge}>это сегодня</div>}
             </div>
             <div className={styles.count}>{pluralize(day.count, ['запись', 'записи', 'записей'])}</div>
         </div>

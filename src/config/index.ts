@@ -1,3 +1,3 @@
-const config = require('./production.json');
+const config = require('./stage.json');
 
 export default config;

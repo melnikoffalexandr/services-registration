@@ -1,8 +1,9 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-import { EntriesList, SchedulerSearchList } from '../types/entries';
+import { EntriesList, SearchList } from '../types/entries';
 import { allArchiveRequest, allEntriesRequest, schedulerSearchRequest } from '../api';
 import { getLocationSearch } from '../utils';
+import { pushMetric } from '../api/metric';
 
 const { userId } = getLocationSearch();
 
@@ -14,6 +15,7 @@ export const getAllList = createAsyncThunk<EntriesList, undefined, { rejectValue
         try {
             if (layout === 'entries') {
                 const { data } = await allEntriesRequest({ userId });
+                pushMetric('telegramCRM/initMainPage', { testField: 'Проверка работы метрики' });
                 return data;
             }
             const { data } = await allArchiveRequest({ userId });
@@ -24,7 +26,7 @@ export const getAllList = createAsyncThunk<EntriesList, undefined, { rejectValue
     },
 );
 
-export const getSchedulerSearch = createAsyncThunk<SchedulerSearchList, { searchText: string }, { rejectValue: string }>(
+export const getSchedulerSearch = createAsyncThunk<SearchList, { searchText: string }, { rejectValue: string }>(
     'home/getSchedulerSearch',
     async (params, { rejectWithValue }) => {
         const { searchText } = params;
@@ -47,7 +49,7 @@ export type HomeState = {
     },
     search: {
         loading: boolean;
-        data: SchedulerSearchList;
+        data: SearchList;
         error: string | null;
     };
 };

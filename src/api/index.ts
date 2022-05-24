@@ -1,4 +1,4 @@
-import { EntriesList, SchedulerSearchList } from '../types/entries';
+import { EntriesList, SearchList } from '../types/entries';
 
 import { axiosClient, AxiosPromise } from './common';
 
@@ -16,7 +16,7 @@ export function addEntryRequest(params: { userId: string, date: string, point?: 
     return axiosClient.post('api/scheduler/createRecordTemplate', params);
 }
 
-export function schedulerSearchRequest(params: { userId: string, searchText: string }): AxiosPromise<SchedulerSearchList> {
+export function schedulerSearchRequest(params: { userId: string, searchText: string }): AxiosPromise<SearchList> {
     const { userId, searchText } = params;
     return axiosClient.get(`api/scheduler/search?userId=${userId}&searchText=${searchText}`);
 }

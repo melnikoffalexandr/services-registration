@@ -52,7 +52,7 @@ const Search:FC = () => {
                             setSearchFocus(true);
                         }}
                     />
-                    {searchText.length < 3 && searchFocus && (
+                    {searchText.length > 0 && searchText.length < 3 && searchFocus && (
                         <span
                             className={styles.placeholder}
                             style={{
