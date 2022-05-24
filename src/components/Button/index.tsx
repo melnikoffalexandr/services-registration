@@ -6,15 +6,17 @@ import { ReactComponent as Plus } from '../../assets/img/plus.svg';
 import styles from './button.module.scss';
 
 interface Props {
-    text: string;
+    text?: string;
     className?: string;
     withIcon?: boolean;
 }
 
-const Button:FC<Props> = ({ text, className = '', withIcon = false }) => (
+const Button:FC<Props> = ({
+    text, className = '', withIcon = false,
+}) => (
     <div className={cls(styles.root, className)}>
         {withIcon && <span className={styles.icon}><Plus /></span>}
-        <span className={styles.text}>{text}</span>
+        {text && <span className={styles.text}>{text}</span>}
     </div>
 );
 

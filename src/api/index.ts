@@ -7,6 +7,11 @@ export function allEntriesRequest(params: { userId: string }): AxiosPromise<Entr
     return axiosClient.get(`api/scheduler/getScheduler?userId=${userId}`);
 }
 
+export function allArchiveRequest(params: { userId: string }): AxiosPromise<EntriesList> {
+    const { userId } = params;
+    return axiosClient.get(`api/scheduler/getArchiveScheduler?userId=${userId}`);
+}
+
 export function addEntryRequest(params: { userId: string, date: string, point?: string }): AxiosPromise<string> {
     return axiosClient.post('api/scheduler/createRecordTemplate', params);
 }

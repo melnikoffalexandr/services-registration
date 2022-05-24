@@ -4,9 +4,9 @@ import Navbar from '../../components/Navbar';
 import Search from '../../components/Search';
 import DaysList from '../../components/DaysList';
 
-// import styles from './HomePage.module.scss';
+// import styles from './schedulerPage.module.scss';
 
-const HomePage = () => (
+const SchedulerPage = () => (
     <>
         <Navbar />
         <Search />
@@ -14,4 +14,4 @@ const HomePage = () => (
     </>
 );
 
-export default HomePage;
+export default SchedulerPage;

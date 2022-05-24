@@ -1,5 +1,5 @@
 import React, { ChangeEvent, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import cls from 'classnames';
 import { formatISO } from 'date-fns';
 
@@ -25,11 +25,12 @@ const getEntryTime = (selectDate: Date | undefined, selectTime: string) => {
 
 const CreateEntry = () => {
     const dispatch = useAppDispatch();
+
+    const navigate = useNavigate();
+
     const {
         isShowPostInput, date, time, point,
     } = useAppSelector((state) => state.createEntry);
-
-    const { userId } = useAppSelector((state) => state.app.user);
 
     const [selectedDate, setSelectedDate] = useState<Date>();
 
@@ -41,13 +42,7 @@ const CreateEntry = () => {
         <div className={styles.root}>
             <div className={styles.header}>
                 <div className={styles.title}>Создаём новую запись</div>
-                <Link to={`/?userId=${userId}`}>
-                    <div
-                        className={styles.cancel}
-                    >
-                        Не создавать
-                    </div>
-                </Link>
+                <div className={styles.cancel} onClick={() => navigate(-1)}>Не создавать</div>
             </div>
             <div className={styles.title}>Когда</div>
             <div className={styles.dateWrapper}>

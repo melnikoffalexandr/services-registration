@@ -2,30 +2,34 @@ import React, { useEffect } from 'react';
 
 import DayItem from '../DayItem';
 import { useAppDispatch, useAppSelector } from '../../utils/hooks';
-import { getAllEntries } from '../../store/homeSlice';
+import { getAllList } from '../../store/schedulerSlice';
 import { ReactComponent as LoaderImg } from '../../assets/img/loader.svg';
 
 import styles from './daysList.module.scss';
 
 const DaysList = () => {
     const dispatch = useAppDispatch();
-    const { search, entries, searchText } = useAppSelector((state) => state.home);
+    const { search, list, searchText } = useAppSelector((state) => state.home);
 
     useEffect(() => {
-        dispatch(getAllEntries());
+        dispatch(getAllList());
     }, [dispatch]);
 
-    if (entries.loading || search.loading) {
+    if (list.loading || search.loading) {
         return (
             <LoaderImg />
         );
     }
 
+    if (search.data.length > 0 && searchText.length >= 3) {
+        return (
+            <div>{search.data.map((item, index) => <div key={index} className={styles.root}>{item.postName}</div>)}</div>
+        );
+    }
+
     return (
         <div>
-            {search.data.length > 0 && searchText.length >= 3
-                ? search.data.map((item) => <div key={item.date} className={styles.root}>{item.postName}</div>)
-                : entries.data.map((list) => <div key={list.id} className={styles.root}>{list.entry.map((day) => <DayItem key={day.date} day={day} />)}</div>)}
+            {list.data.map((item) => <div key={item.id} className={styles.root}>{item.entry.map((day) => <DayItem key={day.date} day={day} />)}</div>)}
         </div>
     );
 };

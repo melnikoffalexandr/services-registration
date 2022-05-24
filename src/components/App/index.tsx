@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { Routes, Route } from 'react-router-dom';
 
-import HomePage from '../../pages/HomePage';
+import SchedulerPage from '../../pages/SchedulerPage';
 import LayoutPage from '../../pages/LayoutPage';
 import CreateEntry from '../../pages/CreateEntry';
 import { useAppDispatch } from '../../utils/hooks';
@@ -20,7 +20,7 @@ const App = () => {
         <div className={styles.root}>
             <Routes>
                 <Route path="/" element={<LayoutPage />}>
-                    <Route index element={<HomePage />} />
+                    <Route index element={<SchedulerPage />} />
                     <Route path="/create-entry" element={<CreateEntry />} />
                 </Route>
             </Routes>

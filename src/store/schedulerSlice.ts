@@ -1,19 +1,25 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 import { EntriesList, SchedulerSearchList } from '../types/entries';
-import { allEntriesRequest, schedulerSearchRequest } from '../api';
+import { allArchiveRequest, allEntriesRequest, schedulerSearchRequest } from '../api';
 import { getLocationSearch } from '../utils';
 
 const { userId } = getLocationSearch();
 
-export const getAllEntries = createAsyncThunk<EntriesList, undefined, { rejectValue: string }>(
-    'home/getAllEntries',
-    async (_, { rejectWithValue }) => {
+export const getAllList = createAsyncThunk<EntriesList, undefined, { rejectValue: string, state: { home: HomeState } }>(
+    'home/getAllList',
+    async (_, { rejectWithValue, getState }) => {
+        const { home } = getState();
+        const { layout } = home;
         try {
-            const { data } = await allEntriesRequest({ userId });
+            if (layout === 'entries') {
+                const { data } = await allEntriesRequest({ userId });
+                return data;
+            }
+            const { data } = await allArchiveRequest({ userId });
             return data;
         } catch (e) {
-            return rejectWithValue('Не удалось получить записи');
+            return rejectWithValue('Не удалось получить информацию о записях');
         }
     },
 );
@@ -33,7 +39,8 @@ export const getSchedulerSearch = createAsyncThunk<SchedulerSearchList, { search
 
 export type HomeState = {
     searchText: string;
-    entries: {
+    layout: 'entries' | 'archive';
+    list: {
         loading: boolean;
         data: EntriesList;
         error: string | null;
@@ -47,7 +54,8 @@ export type HomeState = {
 
 const initialState: HomeState = {
     searchText: '',
-    entries: {
+    layout: 'entries',
+    list: {
         loading: false,
         data: [],
         error: '',
@@ -59,12 +67,15 @@ const initialState: HomeState = {
     },
 };
 
-const HomeSlice = createSlice({
+const SchedulerSlice = createSlice({
     name: 'home',
     initialState,
     reducers: {
         setSearchText(state, { payload }: PayloadAction<string>) {
             state.searchText = payload;
+        },
+        setLayout(state, { payload }: PayloadAction<'entries' | 'archive'>) {
+            state.layout = payload;
         },
         clearSearchResult(state) {
             state.search.data = [];
@@ -72,18 +83,18 @@ const HomeSlice = createSlice({
     },
     extraReducers: (builder) => {
         builder
-            .addCase(getAllEntries.pending, (state) => {
-                state.entries.loading = true;
-                state.entries.error = '';
+            .addCase(getAllList.pending, (state) => {
+                state.list.loading = true;
+                state.list.error = '';
             })
-            .addCase(getAllEntries.fulfilled, (state, { payload }) => {
-                state.entries.loading = false;
-                state.entries.data = payload;
+            .addCase(getAllList.fulfilled, (state, { payload }) => {
+                state.list.loading = false;
+                state.list.data = payload;
             })
-            .addCase(getAllEntries.rejected, (state, { payload }) => {
+            .addCase(getAllList.rejected, (state, { payload }) => {
                 if (payload) {
-                    state.entries.loading = false;
-                    state.entries.error = payload;
+                    state.list.loading = false;
+                    state.list.error = payload;
                 }
             })
             .addCase(getSchedulerSearch.pending, (state) => {
@@ -103,6 +114,6 @@ const HomeSlice = createSlice({
     },
 });
 
-export const { setSearchText, clearSearchResult } = HomeSlice.actions;
+export const { setLayout, setSearchText, clearSearchResult } = SchedulerSlice.actions;
 
-export default HomeSlice.reducer;
+export default SchedulerSlice.reducer;

@@ -4,7 +4,9 @@ import React, {
 import cls from 'classnames';
 
 import { useAppDispatch, useAppSelector } from '../../utils/hooks';
-import { clearSearchResult, getSchedulerSearch, setSearchText } from '../../store/homeSlice';
+import {
+    clearSearchResult, getAllList, getSchedulerSearch, setLayout, setSearchText,
+} from '../../store/schedulerSlice';
 import { ReactComponent as SearchImg } from '../../assets/img/search.svg';
 import { ReactComponent as ArrowImg } from '../../assets/img/arrow.svg';
 import { ReactComponent as CrossImg } from '../../assets/img/cross.svg';
@@ -17,7 +19,7 @@ const Search:FC = () => {
     const inputRef = useRef<HTMLInputElement>(null);
     const [searchFocus, setSearchFocus] = useState(false);
 
-    const searchText = useAppSelector((state) => state.home.searchText);
+    const { searchText, layout } = useAppSelector((state) => state.home);
 
     const getSearch = useDebouncedCallback(() => {
         dispatch(getSchedulerSearch({ searchText }));
@@ -73,10 +75,18 @@ const Search:FC = () => {
                         </div>
                     )}
                 </div>
-                <div className={cls(styles.archiveButton, { [styles.archiveHiddenButton]: searchFocus })} onClick={() => console.log('Archive')}>
-                    <span>Архив</span>
-                    <ArrowImg />
-                </div>
+                {layout === 'entries' && (
+                    <div
+                        className={cls(styles.archiveButton, { [styles.archiveHiddenButton]: searchFocus })}
+                        onClick={() => {
+                            dispatch(setLayout('archive'));
+                            dispatch(getAllList());
+                        }}
+                    >
+                        <span>Архив</span>
+                        <ArrowImg />
+                    </div>
+                )}
             </div>
         </div>
     );

@@ -16,7 +16,7 @@ interface Props {
 }
 
 const MainButton:FC<Props> = ({
-    isShow = false, onClick,
+    isShow = false, text, onClick,
 }) => {
     const [exp, setExp] = useState(window.Telegram.WebApp.isExpanded);
 
@@ -37,7 +37,7 @@ const MainButton:FC<Props> = ({
                 className={cls(styles.root, { [styles.rootExpanded]: exp })}
                 onClick={onClick}
             >
-                <Button text="Test" className={styles.button} />
+                <Button text={text} className={styles.button} />
             </div>, document.body,
         )
     );
