@@ -26,7 +26,9 @@ const SearchItem: FC<Props> = ({ searchItem }) => {
             <div className={styles.searchInfo}>
                 <div className={styles.date}>{format(new Date(searchItem.date), 'dd MMMM · HH:mm', { locale: ru })}</div>
                 <div className={styles.name} dangerouslySetInnerHTML={{ __html: searchItem.client }} />
-                <div className={styles.ca} dangerouslySetInnerHTML={{ __html: searchItem.postName }} />
+                <div className={styles.car} dangerouslySetInnerHTML={{ __html: searchItem.autoModel }} />
+                {searchItem.works?.map((item) => <span className={styles.work} dangerouslySetInnerHTML={{ __html: item }} />)}
+                {searchItem.additionalInfo?.map((item) => <div className={styles.info} dangerouslySetInnerHTML={{ __html: item }} />)}
             </div>
             {(isCurrentToday || isCurrentBefore) && (
                 <div className={styles.badge}>

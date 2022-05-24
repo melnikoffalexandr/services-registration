@@ -20,9 +20,37 @@
     }
 
     .name {
+      margin-bottom: 2px;
+
       font-size: 16px;
       font-weight: bold;
       line-height: 22px;
+    }
+
+    .car {
+      margin-bottom: 2px;
+
+      color: $hint-color;
+
+      font-size: 14px;
+      font-weight: bold;
+      line-height: 18px;
+    }
+
+    .work {
+      margin-bottom: 2px;
+
+      color: $hint-color;
+
+      font-size: 14px;
+      line-height: 18px;
+
+      .info {
+        color: $text-color;
+
+        font-size: 14px;
+        line-height: 18px;
+      }
     }
   }
 

@@ -9,9 +9,12 @@ export type EntriesList = {
 }[];
 
 export interface Search {
-    additionalInfo: null;
+    additionalInfo: string[];
+    autoId: string;
+    autoModel: string;
     date: string;
     client: string;
+    clientId: string;
     works: string[];
     postId: string;
     postName: string;
