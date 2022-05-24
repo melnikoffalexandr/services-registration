@@ -5,7 +5,7 @@ import cls from 'classnames';
 
 import Button from '../Button';
 
-// import { webAppIsExpanded } from '../../utils/telegram';
+import { webAppIsExpanded } from '../../utils/telegram';
 
 import styles from './mainButton.module.scss';
 
@@ -18,26 +18,14 @@ interface Props {
 const MainButton:FC<Props> = ({
     isShow = false, onClick,
 }) => {
-    const { viewportHeight } = window.Telegram.WebApp;
     const [exp, setExp] = useState(window.Telegram.WebApp.isExpanded);
 
     useEffect(() => {
-        const { viewportStableHeight } = window.Telegram.WebApp;
-        if (viewportHeight < viewportStableHeight) {
-            setExp(true);
+        const isExpanded = webAppIsExpanded();
+        if (!window.Telegram.WebApp.isExpanded) {
+            setExp(isExpanded);
         }
-
-        if (viewportHeight === viewportStableHeight) {
-            setExp(false);
-        }
-        window.addEventListener('scroll', () => {
-            setExp(true);
-        });
-        // const isExpanded = webAppIsExpanded();
-        // if (!window.Telegram.WebApp.isExpanded) {
-        //     setExp(isExpanded);
-        // }
-    }, [viewportHeight]);
+    }, [window.Telegram.WebApp.isExpanded]);
 
     if (!isShow) {
         return null;
