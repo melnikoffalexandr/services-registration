@@ -30,6 +30,9 @@ const MainButton:FC<Props> = ({
         if (viewportHeight === viewportStableHeight) {
             setExp(false);
         }
+        window.addEventListener('scroll', () => {
+            setExp(true);
+        });
         // const isExpanded = webAppIsExpanded();
         // if (!window.Telegram.WebApp.isExpanded) {
         //     setExp(isExpanded);
