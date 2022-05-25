@@ -5,12 +5,14 @@ import cls from 'classnames';
 
 import { useAppDispatch, useAppSelector } from '../../utils/hooks';
 import {
-    clearSearchResult, getAllList, getSchedulerSearch, setLayout, setSearchText,
+    clearSearchResult, getAllList, getSchedulerSearch, setSearchText,
 } from '../../store/schedulerSlice';
+import useDebouncedCallback from '../../utils/hooks/useDebounce';
+import { setLayout } from '../../store/navbarSlice';
+
 import { ReactComponent as SearchImg } from '../../assets/img/search.svg';
 import { ReactComponent as ArrowImg } from '../../assets/img/arrow.svg';
 import { ReactComponent as CrossImg } from '../../assets/img/cross.svg';
-import useDebouncedCallback from '../../utils/hooks/useDebounce';
 
 import styles from './search.module.scss';
 
@@ -19,7 +21,9 @@ const Search:FC = () => {
     const inputRef = useRef<HTMLInputElement>(null);
     const [searchFocus, setSearchFocus] = useState(false);
 
-    const { searchText, layout } = useAppSelector((state) => state.home);
+    const { home, navbar } = useAppSelector((state) => state);
+    const { searchText } = home;
+    const { layout } = navbar;
 
     const getSearch = useDebouncedCallback(() => {
         dispatch(getSchedulerSearch({ searchText }));

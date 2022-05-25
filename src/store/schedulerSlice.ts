@@ -6,13 +6,15 @@ import { getLocationSearch } from '../utils';
 import { pushMetric } from '../api/metric';
 import { webAppReady } from '../utils/telegram';
 
+import { NavbarState } from './navbarSlice';
+
 const { userId } = getLocationSearch();
 
-export const getAllList = createAsyncThunk<EntriesList, undefined, { rejectValue: string, state: { home: HomeState } }>(
+export const getAllList = createAsyncThunk<EntriesList, undefined, { rejectValue: string, state: { navbar: NavbarState } }>(
     'home/getAllList',
     async (_, { rejectWithValue, getState }) => {
-        const { home } = getState();
-        const { layout } = home;
+        const { navbar } = getState();
+        const { layout } = navbar;
         try {
             if (layout === 'entries') {
                 const { data } = await allEntriesRequest({ userId });
@@ -43,7 +45,6 @@ export const getSchedulerSearch = createAsyncThunk<SearchList, { searchText: str
 
 export type HomeState = {
     searchText: string;
-    layout: 'entries' | 'archive';
     list: {
         loading: boolean;
         data: EntriesList;
@@ -58,7 +59,6 @@ export type HomeState = {
 
 const initialState: HomeState = {
     searchText: '',
-    layout: 'entries',
     list: {
         loading: false,
         data: [],
@@ -77,9 +77,6 @@ const SchedulerSlice = createSlice({
     reducers: {
         setSearchText(state, { payload }: PayloadAction<string>) {
             state.searchText = payload;
-        },
-        setLayout(state, { payload }: PayloadAction<'entries' | 'archive'>) {
-            state.layout = payload;
         },
         clearSearchResult(state) {
             state.search.data = [];
@@ -118,6 +115,6 @@ const SchedulerSlice = createSlice({
     },
 });
 
-export const { setLayout, setSearchText, clearSearchResult } = SchedulerSlice.actions;
+export const { setSearchText, clearSearchResult } = SchedulerSlice.actions;
 
 export default SchedulerSlice.reducer;

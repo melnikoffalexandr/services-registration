@@ -56,7 +56,7 @@ const Button:FC<Props> = ({
 
     if (type === 'small') {
         return (
-            <div className={styles.root} onClick={onClick}>
+            <div className={cls(styles.root, className)} onClick={onClick}>
                 <Plus />
             </div>
         );
@@ -64,7 +64,7 @@ const Button:FC<Props> = ({
 
     if (type === 'inline') {
         return (
-            <div className={cls(styles.rootInline, { [styles.rootInlineRed]: color === 'red' })} onClick={onClick}>
+            <div className={cls(styles.rootInline, className, { [styles.rootInlineRed]: color === 'red' })} onClick={onClick}>
                 {text}
             </div>
         );
