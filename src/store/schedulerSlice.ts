@@ -4,6 +4,7 @@ import { EntriesList, SearchList } from '../types/entries';
 import { allArchiveRequest, allEntriesRequest, schedulerSearchRequest } from '../api';
 import { getLocationSearch } from '../utils';
 import { pushMetric } from '../api/metric';
+import { webAppReady } from '../utils/telegram';
 
 const { userId } = getLocationSearch();
 
@@ -15,6 +16,7 @@ export const getAllList = createAsyncThunk<EntriesList, undefined, { rejectValue
         try {
             if (layout === 'entries') {
                 const { data } = await allEntriesRequest({ userId });
+                webAppReady();
                 pushMetric('telegramCRM/initMainPage', { testField: 'Проверка работы метрики' });
                 return data;
             }

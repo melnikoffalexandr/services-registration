@@ -1,17 +1,12 @@
-const { Telegram } = window;
-const { WebApp } = Telegram;
-
-export const webAppChatId = () => WebApp.initDataUnsafe.user?.id;
-/* export const webAppMainButtonSetText = (text: string) => WebApp.MainButton.setText(text);
-export const webAppMainButtonShow = () => WebApp.MainButton.show();
-export const webAppMainButtonClick = (callback: any) => WebApp.MainButton.onClick(callback);
-export const webAppMainButtonHide = () => WebApp.MainButton.hide(); */
-export const webAppMainButtonShowProgress = (leaveActive?: boolean) => WebApp.MainButton.showProgress(leaveActive);
-export const webAppClose = () => WebApp.close();
-export const webAppIsExpanded = () => WebApp.isExpanded;
-export const webAppExpand = () => WebApp.expand();
+const webApp = window.Telegram.WebApp;
+export const webAppChatId = () => webApp.initDataUnsafe.user?.id;
+export const webAppReady = () => webApp.ready();
+export const webAppMainButtonShowProgress = (leaveActive?: boolean) => webApp.MainButton.showProgress(leaveActive);
+export const webAppClose = () => webApp.close();
+export const webAppIsExpanded = () => webApp.isExpanded;
+export const webAppExpand = () => webApp.expand();
 export const webAppTheme = () => ({
-    colorScheme: WebApp.colorScheme,
-    textColor: WebApp.themeParams.text_color,
-    backgroundColor: WebApp.themeParams.bg_color,
+    colorScheme: webApp.colorScheme,
+    textColor: webApp.themeParams.text_color,
+    backgroundColor: webApp.themeParams.bg_color,
 });
