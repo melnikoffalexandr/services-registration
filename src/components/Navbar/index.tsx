@@ -32,7 +32,7 @@ const Navbar = () => {
                 </Link>
                 <div className={styles.title}>Архив записей</div>
                 <Link to={`create-entry/?userId=${userId}`}>
-                    <Button className={styles.add} withIcon />
+                    <Button type="small" />
                 </Link>
             </div>
         );
@@ -41,7 +41,7 @@ const Navbar = () => {
         <div className={styles.root}>
             <div className={styles.title}>📋 Записи</div>
             <Link to={`create-entry/?userId=${userId}`}>
-                <Button text="Записать" withIcon />
+                <Button type="big" text="Записать" withIcon />
             </Link>
         </div>
     );

@@ -11,7 +11,7 @@ import {
 import DatePicker from '../../components/DatePicker';
 import { ReactComponent as CalendarImg } from '../../assets/img/calendar.svg';
 import { ReactComponent as TimeImg } from '../../assets/img/time.svg';
-import MainButton from '../../components/MainButton';
+import Button from '../../components/Button';
 
 import styles from './createEntry.module.scss';
 
@@ -42,9 +42,9 @@ const CreateEntry = () => {
         <div className={styles.root}>
             <div className={styles.header}>
                 <div className={styles.title}>Создаём новую запись</div>
-                <div className={styles.cancel} onClick={() => navigate(-1)}>Не создавать</div>
+                <Button type="inline" text="Не создавать" color="red" onClick={() => navigate(-1)} />
             </div>
-            <div className={styles.title}>Когда</div>
+            <div className={styles.supTitle}>Когда</div>
             <div className={styles.dateWrapper}>
                 <div
                     className={styles.inputWrapper}
@@ -87,7 +87,7 @@ const CreateEntry = () => {
                 {isShowPostInput
                     ? (
                         <div className={styles.textBoxWrapper}>
-                            <div className={styles.title}>Пост</div>
+                            <div className={styles.supTitle}>Пост</div>
                             <TextBox
                                 className={styles.textBox}
                                 value={point}
@@ -97,13 +97,14 @@ const CreateEntry = () => {
                         </div>
                     )
                     : (
-                        <div className={styles.createPost} onClick={() => dispatch(setShowPostInput(true))}>
-                            <span>Добавить пост</span>
+                        <div className={styles.createPost}>
+                            <Button type="inline" text="Добавить пост" onClick={() => dispatch(setShowPostInput(true))} />
                             <span className={styles.subText}>необязательно</span>
                         </div>
                     )}
             </div>
-            <MainButton
+            <Button
+                type="main"
                 isShow={date !== '' && time !== ''}
                 text="Далее"
                 onClick={() => dispatch(addEntry({ date: getEntryTime(selectedDate, time), point }))}

@@ -7,20 +7,14 @@
 
   width: 100%;
 
-  padding: 10px 16px 12px 12px;
+  padding: 10px 12px;
 
   border-radius: 8px;
   background-color: $green-color;
 
-  span {
-    display: inherit;
-  }
-
-  .icon {
-    margin-right: 12px;
-  }
-
   .text {
+    margin-left: 12px;
+
     color: $white;
 
     font-size: 16px;
@@ -28,3 +22,33 @@
     line-height: 22px;
   }
 }
+
+.mainRoot {
+  position: absolute;
+  top: calc(var(--tg-viewport-stable-height) - 44px);
+
+  width: 100%;
+
+  transition: top 0.2s;
+
+  border-radius: 0;
+}
+
+.mainRootExpanded {
+  position: fixed;
+  top: unset;
+  bottom: 0;
+
+  transition: 0.2s;
+}
+
+.rootInline {
+  height: max-content;
+
+  color: $light-blue;
+}
+
+.rootInlineRed {
+  color: $red;
+}
+
